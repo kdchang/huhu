@@ -25,7 +25,7 @@ function initMyBookmarklet() {
 		var $fxQuery = jQuery.noConflict();
 		if($fxQuery('#fox-body').length == 0) {
 			$fxQuery('body').append('<div class="fox-body" id="fox-body">' + 
-				'<img id="fox-img" src="//kdchang.cc/huhu/img/8-bit-fox-sleep.gif">' +
+				'<img id="fox-img" src="//raw.githubusercontent.com/kdchang/huhu/gh-pages/img/8-bit-fox-sleep.gif">' +
 				'<style>'  +
 				// the CSS style 
 				'#fox-body {position:fixed; bottom:60px; right:60px;}' + 
