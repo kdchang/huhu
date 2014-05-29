@@ -29,7 +29,7 @@ function initMyBookmarklet() {
 				'<style>'  +
 				// the CSS style 
 				'#fox-body-div {position:fixed; bottom:50px; right:50px;}' + 
-				'#fox-img {width:100px;}' +
+				'#fox-img {width:150px;}' +
 				'</style>' +
 				'</div>');
 		}
