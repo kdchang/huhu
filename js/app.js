@@ -24,11 +24,12 @@ function initMyBookmarklet() {
 		// JavaScript code
 		var $fxQuery = jQuery.noConflict();
 		if($fxQuery('#fox-body').length == 0) {
-			$fxQuery('body').append('<div class="fox-body" id="fox-body">' + 
-				'<img id="fox-img" src="//raw.githubusercontent.com/kdchang/huhu/gh-pages/img/8-bit-fox-sleep.gif">' +
+			$fxQuery('body').append('<div class="fox-body-div" id="fox-body-div">' + 
+				'<img class="fox-img" id="fox-img" src="//raw.githubusercontent.com/kdchang/huhu/gh-pages/img/8-bit-fox-sleep.gif">' +
 				'<style>'  +
 				// the CSS style 
-				'#fox-body {position:fixed; bottom:60px; right:60px;}' + 
+				'#fox-body-div {position:fixed; bottom:50px; right:50px;}' + 
+				'#fox-img {width:100px;}' +
 				'</style>' +
 				'</div>');
 		}
