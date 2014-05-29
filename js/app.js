@@ -28,7 +28,7 @@ function initMyBookmarklet() {
 				'<img id="fox-img" src="//kdchang.cc/huhu/img/8-bit-fox-sleep.gif">' +
 				'<style>'  +
 				// the CSS style 
-				'#fox-body {position:absolute; bottom:30px; right:30px;}' + 
+				'#fox-body {position:fix; bottom:30px; right:30px;}' + 
 				'</style>' +
 				'</div>');
 		}
