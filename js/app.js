@@ -5,7 +5,7 @@ var version = "1.11.1";
 if (window.jQuery === undefined || window.jQuery.fn.jquery < version) { 
 	var done = false;
 	var script = document.createElement("script");
-	script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/' + version +'/jquery.min.js';
+	script.src = '//ajax.googleapis.com/ajax/libs/jquery/' + version +'/jquery.min.js';
 	script.onload = script.onreadystatechange = function(){
 		if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
 			done = true;
