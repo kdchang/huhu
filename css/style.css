@@ -1,0 +1,554 @@
+.eat-keyframes from {
+  background-position: 0px 0px;
+}
+.eat-keyframes to {
+  background-position: -1200px 0px;
+}
+@-webkit-keyframes eat-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -1200px 0px;
+  }
+}
+@-moz-keyframes eat-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -1200px 0px;
+  }
+}
+@-ms-keyframes eat-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -1200px 0px;
+  }
+}
+@-o-keyframes eat-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -1200px 0px;
+  }
+}
+@keyframes eat-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -1200px 0px;
+  }
+}
+.eat {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: eat-action 3s steps(6) infinite;
+  -moz-animation: eat-action 3s steps(6) infinite;
+  -o-animation: eat-action 3s steps(6) infinite;
+  -ms-animation: eat-action 3s steps(6) infinite;
+  animation: eat-action 3s steps(6) infinite;
+}
+.still-keyframes from {
+  background-position: 0px -143px;
+}
+.still-keyframes to {
+  background-position: -199px -143px;
+}
+@-webkit-keyframes still-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -199px -143px;
+  }
+}
+@-moz-keyframes still-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -199px -143px;
+  }
+}
+@-ms-keyframes still-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -199px -143px;
+  }
+}
+@-o-keyframes still-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -199px -143px;
+  }
+}
+@keyframes still-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -199px -143px;
+  }
+}
+.still {
+  width: 199px;
+  height: 143px;
+  -webkit-animation: still-action 0.5s steps(1) infinite;
+  -moz-animation: still-action 0.5s steps(1) infinite;
+  -o-animation: still-action 0.5s steps(1) infinite;
+  -ms-animation: still-action 0.5s steps(1) infinite;
+  animation: still-action 0.5s steps(1) infinite;
+}
+.drag-keyframes from {
+  background-position: 0px -286px;
+}
+.drag-keyframes to {
+  background-position: -796px -286px;
+}
+@-webkit-keyframes drag-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@-moz-keyframes drag-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@-ms-keyframes drag-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@-o-keyframes drag-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@keyframes drag-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+.drag {
+  width: 199px;
+  height: 143px;
+  -webkit-animation: drag-action 2s steps(4) infinite;
+  -moz-animation: drag-action 2s steps(4) infinite;
+  -o-animation: drag-action 2s steps(4) infinite;
+  -ms-animation: drag-action 2s steps(4) infinite;
+  animation: drag-action 2s steps(4) infinite;
+}
+.sleep-keyframes from {
+  background-position: 0px -429px;
+}
+.sleep-keyframes to {
+  background-position: -400px -429px;
+}
+@-webkit-keyframes sleep-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@-moz-keyframes sleep-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@-ms-keyframes sleep-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@-o-keyframes sleep-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@keyframes sleep-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+.sleep {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: sleep-action 1s steps(2) infinite;
+  -moz-animation: sleep-action 1s steps(2) infinite;
+  -o-animation: sleep-action 1s steps(2) infinite;
+  -ms-animation: sleep-action 1s steps(2) infinite;
+  animation: sleep-action 1s steps(2) infinite;
+}
+.sleep-before-keyframes from {
+  background-position: 0px -572px;
+}
+.sleep-before-keyframes to {
+  background-position: -1800px -572px;
+}
+@-webkit-keyframes sleep-before-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -1800px -572px;
+  }
+}
+@-moz-keyframes sleep-before-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -1800px -572px;
+  }
+}
+@-ms-keyframes sleep-before-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -1800px -572px;
+  }
+}
+@-o-keyframes sleep-before-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -1800px -572px;
+  }
+}
+@keyframes sleep-before-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -1800px -572px;
+  }
+}
+.sleep-before {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: sleep-before-action 4.5s steps(9) infinite;
+  -moz-animation: sleep-before-action 4.5s steps(9) infinite;
+  -o-animation: sleep-before-action 4.5s steps(9) infinite;
+  -ms-animation: sleep-before-action 4.5s steps(9) infinite;
+  animation: sleep-before-action 4.5s steps(9) infinite;
+}
+.run-right-keyframes from {
+  background-position: 0px -715px;
+}
+.run-right-keyframes to {
+  background-position: -1200px -715px;
+}
+@-webkit-keyframes run-right-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -1200px -715px;
+  }
+}
+@-moz-keyframes run-right-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -1200px -715px;
+  }
+}
+@-ms-keyframes run-right-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -1200px -715px;
+  }
+}
+@-o-keyframes run-right-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -1200px -715px;
+  }
+}
+@keyframes run-right-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -1200px -715px;
+  }
+}
+.run-right {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-right-action 3s steps(6) infinite;
+  -moz-animation: run-right-action 3s steps(6) infinite;
+  -o-animation: run-right-action 3s steps(6) infinite;
+  -ms-animation: run-right-action 3s steps(6) infinite;
+  animation: run-right-action 3s steps(6) infinite;
+}
+.run-left-keyframes from {
+  background-position: 0px -858px;
+}
+.run-left-keyframes to {
+  background-position: -1200px -858px;
+}
+@-webkit-keyframes run-left-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1200px -858px;
+  }
+}
+@-moz-keyframes run-left-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1200px -858px;
+  }
+}
+@-ms-keyframes run-left-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1200px -858px;
+  }
+}
+@-o-keyframes run-left-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1200px -858px;
+  }
+}
+@keyframes run-left-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1200px -858px;
+  }
+}
+.run-left {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-left-action 3s steps(6) infinite;
+  -moz-animation: run-left-action 3s steps(6) infinite;
+  -o-animation: run-left-action 3s steps(6) infinite;
+  -ms-animation: run-left-action 3s steps(6) infinite;
+  animation: run-left-action 3s steps(6) infinite;
+}
+.snooze-keyframes from {
+  background-position: 0px -1001px;
+}
+.snooze-keyframes to {
+  background-position: -2400px -1001px;
+}
+@-webkit-keyframes snooze-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -2400px -1001px;
+  }
+}
+@-moz-keyframes snooze-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -2400px -1001px;
+  }
+}
+@-ms-keyframes snooze-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -2400px -1001px;
+  }
+}
+@-o-keyframes snooze-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -2400px -1001px;
+  }
+}
+@keyframes snooze-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -2400px -1001px;
+  }
+}
+.snooze {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: snooze-action 6s steps(12) infinite;
+  -moz-animation: snooze-action 6s steps(12) infinite;
+  -o-animation: snooze-action 6s steps(12) infinite;
+  -ms-animation: snooze-action 6s steps(12) infinite;
+  animation: snooze-action 6s steps(12) infinite;
+}
+.sleep-after-keyframes from {
+  background-position: 0px -1144px;
+}
+.sleep-after-keyframes to {
+  background-position: -1800px -1144px;
+}
+@-webkit-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -1800px -1144px;
+  }
+}
+@-moz-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -1800px -1144px;
+  }
+}
+@-ms-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -1800px -1144px;
+  }
+}
+@-o-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -1800px -1144px;
+  }
+}
+@keyframes sleep-after-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -1800px -1144px;
+  }
+}
+.sleep-after {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: sleep-after-action 4.5s steps(9) infinite;
+  -moz-animation: sleep-after-action 4.5s steps(9) infinite;
+  -o-animation: sleep-after-action 4.5s steps(9) infinite;
+  -ms-animation: sleep-after-action 4.5s steps(9) infinite;
+  animation: sleep-after-action 4.5s steps(9) infinite;
+}
+.satisfied-keyframes from {
+  background-position: 0px -1287px;
+}
+.satisfied-keyframes to {
+  background-position: -995px -1287px;
+}
+@-webkit-keyframes satisfied-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -995px -1287px;
+  }
+}
+@-moz-keyframes satisfied-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -995px -1287px;
+  }
+}
+@-ms-keyframes satisfied-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -995px -1287px;
+  }
+}
+@-o-keyframes satisfied-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -995px -1287px;
+  }
+}
+@keyframes satisfied-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -995px -1287px;
+  }
+}
+.satisfied {
+  width: 199px;
+  height: 143px;
+  -webkit-animation: satisfied-action 2.5s steps(5) infinite;
+  -moz-animation: satisfied-action 2.5s steps(5) infinite;
+  -o-animation: satisfied-action 2.5s steps(5) infinite;
+  -ms-animation: satisfied-action 2.5s steps(5) infinite;
+  animation: satisfied-action 2.5s steps(5) infinite;
+}
+#huhu {
+  display: block;
+  background-image: url('../img/spritesheet.png');
+}
