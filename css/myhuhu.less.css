@@ -277,14 +277,14 @@
   background-position: 0px -715px;
 }
 .sleep-keyframes to {
-  background-position: -400px -715px;
+  background-position: -800px -715px;
 }
 @-webkit-keyframes sleep-action {
   from {
     background-position: 0px -715px;
   }
   to {
-    background-position: -400px -715px;
+    background-position: -800px -715px;
   }
 }
 @-moz-keyframes sleep-action {
@@ -292,7 +292,7 @@
     background-position: 0px -715px;
   }
   to {
-    background-position: -400px -715px;
+    background-position: -800px -715px;
   }
 }
 @-ms-keyframes sleep-action {
@@ -300,7 +300,7 @@
     background-position: 0px -715px;
   }
   to {
-    background-position: -400px -715px;
+    background-position: -800px -715px;
   }
 }
 @-o-keyframes sleep-action {
@@ -308,7 +308,7 @@
     background-position: 0px -715px;
   }
   to {
-    background-position: -400px -715px;
+    background-position: -800px -715px;
   }
 }
 @keyframes sleep-action {
@@ -316,17 +316,17 @@
     background-position: 0px -715px;
   }
   to {
-    background-position: -400px -715px;
+    background-position: -800px -715px;
   }
 }
 .sleep {
   width: 200px;
   height: 143px;
-  -webkit-animation: sleep-action 1s steps(2) normal forwards;
-  -moz-animation: sleep-action 1s steps(2) normal forwards;
-  -o-animation: sleep-action 1s steps(2) normal forwards;
-  -ms-animation: sleep-action 1s steps(2) normal forwards;
-  animation: sleep-action 1s steps(2) normal forwards;
+  -webkit-animation: sleep-action 2s steps(4) normal forwards;
+  -moz-animation: sleep-action 2s steps(4) normal forwards;
+  -o-animation: sleep-action 2s steps(4) normal forwards;
+  -ms-animation: sleep-action 2s steps(4) normal forwards;
+  animation: sleep-action 2s steps(4) normal forwards;
 }
 .sleep-before-keyframes from {
   background-position: 0px -858px;
