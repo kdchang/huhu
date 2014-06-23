@@ -1,0 +1,795 @@
+.run-left-before-keyframes from {
+  background-position: 0px 0px;
+}
+.run-left-before-keyframes to {
+  background-position: -400px 0px;
+}
+@-webkit-keyframes run-left-before-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -400px 0px;
+  }
+}
+@-moz-keyframes run-left-before-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -400px 0px;
+  }
+}
+@-ms-keyframes run-left-before-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -400px 0px;
+  }
+}
+@-o-keyframes run-left-before-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -400px 0px;
+  }
+}
+@keyframes run-left-before-action {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -400px 0px;
+  }
+}
+.run-left-before {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-left-before-action 1s steps(2) normal forwards;
+  -moz-animation: run-left-before-action 1s steps(2) normal forwards;
+  -o-animation: run-left-before-action 1s steps(2) normal forwards;
+  -ms-animation: run-left-before-action 1s steps(2) normal forwards;
+  animation: run-left-before-action 1s steps(2) normal forwards;
+}
+.eat-keyframes from {
+  background-position: 0px -143px;
+}
+.eat-keyframes to {
+  background-position: -1200px -143px;
+}
+@-webkit-keyframes eat-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -1200px -143px;
+  }
+}
+@-moz-keyframes eat-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -1200px -143px;
+  }
+}
+@-ms-keyframes eat-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -1200px -143px;
+  }
+}
+@-o-keyframes eat-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -1200px -143px;
+  }
+}
+@keyframes eat-action {
+  from {
+    background-position: 0px -143px;
+  }
+  to {
+    background-position: -1200px -143px;
+  }
+}
+.eat {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: eat-action 3s steps(6) normal forwards;
+  -moz-animation: eat-action 3s steps(6) normal forwards;
+  -o-animation: eat-action 3s steps(6) normal forwards;
+  -ms-animation: eat-action 3s steps(6) normal forwards;
+  animation: eat-action 3s steps(6) normal forwards;
+}
+.still-keyframes from {
+  background-position: 0px -286px;
+}
+.still-keyframes to {
+  background-position: -796px -286px;
+}
+@-webkit-keyframes still-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@-moz-keyframes still-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@-ms-keyframes still-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@-o-keyframes still-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+@keyframes still-action {
+  from {
+    background-position: 0px -286px;
+  }
+  to {
+    background-position: -796px -286px;
+  }
+}
+.still {
+  width: 199px;
+  height: 143px;
+  -webkit-animation: still-action 2s steps(4) normal forwards;
+  -moz-animation: still-action 2s steps(4) normal forwards;
+  -o-animation: still-action 2s steps(4) normal forwards;
+  -ms-animation: still-action 2s steps(4) normal forwards;
+  animation: still-action 2s steps(4) normal forwards;
+}
+.run-right-after-keyframes from {
+  background-position: 0px -429px;
+}
+.run-right-after-keyframes to {
+  background-position: -400px -429px;
+}
+@-webkit-keyframes run-right-after-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@-moz-keyframes run-right-after-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@-ms-keyframes run-right-after-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@-o-keyframes run-right-after-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+@keyframes run-right-after-action {
+  from {
+    background-position: 0px -429px;
+  }
+  to {
+    background-position: -400px -429px;
+  }
+}
+.run-right-after {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-right-after-action 1s steps(2) normal forwards;
+  -moz-animation: run-right-after-action 1s steps(2) normal forwards;
+  -o-animation: run-right-after-action 1s steps(2) normal forwards;
+  -ms-animation: run-right-after-action 1s steps(2) normal forwards;
+  animation: run-right-after-action 1s steps(2) normal forwards;
+}
+.drag-keyframes from {
+  background-position: 0px -572px;
+}
+.drag-keyframes to {
+  background-position: -796px -572px;
+}
+@-webkit-keyframes drag-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -796px -572px;
+  }
+}
+@-moz-keyframes drag-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -796px -572px;
+  }
+}
+@-ms-keyframes drag-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -796px -572px;
+  }
+}
+@-o-keyframes drag-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -796px -572px;
+  }
+}
+@keyframes drag-action {
+  from {
+    background-position: 0px -572px;
+  }
+  to {
+    background-position: -796px -572px;
+  }
+}
+.drag {
+  width: 199px;
+  height: 143px;
+  -webkit-animation: drag-action 2s steps(4) normal forwards;
+  -moz-animation: drag-action 2s steps(4) normal forwards;
+  -o-animation: drag-action 2s steps(4) normal forwards;
+  -ms-animation: drag-action 2s steps(4) normal forwards;
+  animation: drag-action 2s steps(4) normal forwards;
+}
+.sleep-keyframes from {
+  background-position: 0px -715px;
+}
+.sleep-keyframes to {
+  background-position: -400px -715px;
+}
+@-webkit-keyframes sleep-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -400px -715px;
+  }
+}
+@-moz-keyframes sleep-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -400px -715px;
+  }
+}
+@-ms-keyframes sleep-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -400px -715px;
+  }
+}
+@-o-keyframes sleep-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -400px -715px;
+  }
+}
+@keyframes sleep-action {
+  from {
+    background-position: 0px -715px;
+  }
+  to {
+    background-position: -400px -715px;
+  }
+}
+.sleep {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: sleep-action 1s steps(2) normal forwards;
+  -moz-animation: sleep-action 1s steps(2) normal forwards;
+  -o-animation: sleep-action 1s steps(2) normal forwards;
+  -ms-animation: sleep-action 1s steps(2) normal forwards;
+  animation: sleep-action 1s steps(2) normal forwards;
+}
+.sleep-before-keyframes from {
+  background-position: 0px -858px;
+}
+.sleep-before-keyframes to {
+  background-position: -1800px -858px;
+}
+@-webkit-keyframes sleep-before-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1800px -858px;
+  }
+}
+@-moz-keyframes sleep-before-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1800px -858px;
+  }
+}
+@-ms-keyframes sleep-before-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1800px -858px;
+  }
+}
+@-o-keyframes sleep-before-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1800px -858px;
+  }
+}
+@keyframes sleep-before-action {
+  from {
+    background-position: 0px -858px;
+  }
+  to {
+    background-position: -1800px -858px;
+  }
+}
+.sleep-before {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: sleep-before-action 4.5s steps(9) normal forwards;
+  -moz-animation: sleep-before-action 4.5s steps(9) normal forwards;
+  -o-animation: sleep-before-action 4.5s steps(9) normal forwards;
+  -ms-animation: sleep-before-action 4.5s steps(9) normal forwards;
+  animation: sleep-before-action 4.5s steps(9) normal forwards;
+}
+.run-right-keyframes from {
+  background-position: 0px -1001px;
+}
+.run-right-keyframes to {
+  background-position: -800px -1001px;
+}
+@-webkit-keyframes run-right-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -800px -1001px;
+  }
+}
+@-moz-keyframes run-right-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -800px -1001px;
+  }
+}
+@-ms-keyframes run-right-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -800px -1001px;
+  }
+}
+@-o-keyframes run-right-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -800px -1001px;
+  }
+}
+@keyframes run-right-action {
+  from {
+    background-position: 0px -1001px;
+  }
+  to {
+    background-position: -800px -1001px;
+  }
+}
+.run-right {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-right-action 2s steps(4) normal forwards;
+  -moz-animation: run-right-action 2s steps(4) normal forwards;
+  -o-animation: run-right-action 2s steps(4) normal forwards;
+  -ms-animation: run-right-action 2s steps(4) normal forwards;
+  animation: run-right-action 2s steps(4) normal forwards;
+}
+.run-left-keyframes from {
+  background-position: 0px -1144px;
+}
+.run-left-keyframes to {
+  background-position: -800px -1144px;
+}
+@-webkit-keyframes run-left-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -800px -1144px;
+  }
+}
+@-moz-keyframes run-left-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -800px -1144px;
+  }
+}
+@-ms-keyframes run-left-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -800px -1144px;
+  }
+}
+@-o-keyframes run-left-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -800px -1144px;
+  }
+}
+@keyframes run-left-action {
+  from {
+    background-position: 0px -1144px;
+  }
+  to {
+    background-position: -800px -1144px;
+  }
+}
+.run-left {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-left-action 2s steps(4) normal forwards;
+  -moz-animation: run-left-action 2s steps(4) normal forwards;
+  -o-animation: run-left-action 2s steps(4) normal forwards;
+  -ms-animation: run-left-action 2s steps(4) normal forwards;
+  animation: run-left-action 2s steps(4) normal forwards;
+}
+.snooze-keyframes from {
+  background-position: 0px -1287px;
+}
+.snooze-keyframes to {
+  background-position: -2400px -1287px;
+}
+@-webkit-keyframes snooze-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -2400px -1287px;
+  }
+}
+@-moz-keyframes snooze-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -2400px -1287px;
+  }
+}
+@-ms-keyframes snooze-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -2400px -1287px;
+  }
+}
+@-o-keyframes snooze-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -2400px -1287px;
+  }
+}
+@keyframes snooze-action {
+  from {
+    background-position: 0px -1287px;
+  }
+  to {
+    background-position: -2400px -1287px;
+  }
+}
+.snooze {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: snooze-action 6s steps(12) normal forwards;
+  -moz-animation: snooze-action 6s steps(12) normal forwards;
+  -o-animation: snooze-action 6s steps(12) normal forwards;
+  -ms-animation: snooze-action 6s steps(12) normal forwards;
+  animation: snooze-action 6s steps(12) normal forwards;
+}
+.sleep-after-keyframes from {
+  background-position: 0px -1430px;
+}
+.sleep-after-keyframes to {
+  background-position: -1800px -1430px;
+}
+@-webkit-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1430px;
+  }
+  to {
+    background-position: -1800px -1430px;
+  }
+}
+@-moz-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1430px;
+  }
+  to {
+    background-position: -1800px -1430px;
+  }
+}
+@-ms-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1430px;
+  }
+  to {
+    background-position: -1800px -1430px;
+  }
+}
+@-o-keyframes sleep-after-action {
+  from {
+    background-position: 0px -1430px;
+  }
+  to {
+    background-position: -1800px -1430px;
+  }
+}
+@keyframes sleep-after-action {
+  from {
+    background-position: 0px -1430px;
+  }
+  to {
+    background-position: -1800px -1430px;
+  }
+}
+.sleep-after {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: sleep-after-action 4.5s steps(9) normal forwards;
+  -moz-animation: sleep-after-action 4.5s steps(9) normal forwards;
+  -o-animation: sleep-after-action 4.5s steps(9) normal forwards;
+  -ms-animation: sleep-after-action 4.5s steps(9) normal forwards;
+  animation: sleep-after-action 4.5s steps(9) normal forwards;
+}
+.satisfied-keyframes from {
+  background-position: 0px -1573px;
+}
+.satisfied-keyframes to {
+  background-position: -995px -1573px;
+}
+@-webkit-keyframes satisfied-action {
+  from {
+    background-position: 0px -1573px;
+  }
+  to {
+    background-position: -995px -1573px;
+  }
+}
+@-moz-keyframes satisfied-action {
+  from {
+    background-position: 0px -1573px;
+  }
+  to {
+    background-position: -995px -1573px;
+  }
+}
+@-ms-keyframes satisfied-action {
+  from {
+    background-position: 0px -1573px;
+  }
+  to {
+    background-position: -995px -1573px;
+  }
+}
+@-o-keyframes satisfied-action {
+  from {
+    background-position: 0px -1573px;
+  }
+  to {
+    background-position: -995px -1573px;
+  }
+}
+@keyframes satisfied-action {
+  from {
+    background-position: 0px -1573px;
+  }
+  to {
+    background-position: -995px -1573px;
+  }
+}
+.satisfied {
+  width: 199px;
+  height: 143px;
+  -webkit-animation: satisfied-action 2.5s steps(5) normal forwards;
+  -moz-animation: satisfied-action 2.5s steps(5) normal forwards;
+  -o-animation: satisfied-action 2.5s steps(5) normal forwards;
+  -ms-animation: satisfied-action 2.5s steps(5) normal forwards;
+  animation: satisfied-action 2.5s steps(5) normal forwards;
+}
+.run-right-before-keyframes from {
+  background-position: 0px -1716px;
+}
+.run-right-before-keyframes to {
+  background-position: -400px -1716px;
+}
+@-webkit-keyframes run-right-before-action {
+  from {
+    background-position: 0px -1716px;
+  }
+  to {
+    background-position: -400px -1716px;
+  }
+}
+@-moz-keyframes run-right-before-action {
+  from {
+    background-position: 0px -1716px;
+  }
+  to {
+    background-position: -400px -1716px;
+  }
+}
+@-ms-keyframes run-right-before-action {
+  from {
+    background-position: 0px -1716px;
+  }
+  to {
+    background-position: -400px -1716px;
+  }
+}
+@-o-keyframes run-right-before-action {
+  from {
+    background-position: 0px -1716px;
+  }
+  to {
+    background-position: -400px -1716px;
+  }
+}
+@keyframes run-right-before-action {
+  from {
+    background-position: 0px -1716px;
+  }
+  to {
+    background-position: -400px -1716px;
+  }
+}
+.run-right-before {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-right-before-action 1s steps(2) normal forwards;
+  -moz-animation: run-right-before-action 1s steps(2) normal forwards;
+  -o-animation: run-right-before-action 1s steps(2) normal forwards;
+  -ms-animation: run-right-before-action 1s steps(2) normal forwards;
+  animation: run-right-before-action 1s steps(2) normal forwards;
+}
+.run-left-after-keyframes from {
+  background-position: 0px -1859px;
+}
+.run-left-after-keyframes to {
+  background-position: -400px -1859px;
+}
+@-webkit-keyframes run-left-after-action {
+  from {
+    background-position: 0px -1859px;
+  }
+  to {
+    background-position: -400px -1859px;
+  }
+}
+@-moz-keyframes run-left-after-action {
+  from {
+    background-position: 0px -1859px;
+  }
+  to {
+    background-position: -400px -1859px;
+  }
+}
+@-ms-keyframes run-left-after-action {
+  from {
+    background-position: 0px -1859px;
+  }
+  to {
+    background-position: -400px -1859px;
+  }
+}
+@-o-keyframes run-left-after-action {
+  from {
+    background-position: 0px -1859px;
+  }
+  to {
+    background-position: -400px -1859px;
+  }
+}
+@keyframes run-left-after-action {
+  from {
+    background-position: 0px -1859px;
+  }
+  to {
+    background-position: -400px -1859px;
+  }
+}
+.run-left-after {
+  width: 200px;
+  height: 143px;
+  -webkit-animation: run-left-after-action 1s steps(2) normal forwards;
+  -moz-animation: run-left-after-action 1s steps(2) normal forwards;
+  -o-animation: run-left-after-action 1s steps(2) normal forwards;
+  -ms-animation: run-left-after-action 1s steps(2) normal forwards;
+  animation: run-left-after-action 1s steps(2) normal forwards;
+}
+#myhuhu {
+  position: fixed;
+  display: block;
+  background-image: url('../img/spritesheet.png');
+  right: 0;
+  bottom: 0;
+}
+.run-right {
+  margin-right: 115px;
+}
+.run-right-before {
+  margin-right: 115px;
+}
+.run-right-after {
+  margin-right: 115px;
+}
+.sleep {
+  margin-right: 115px;
+}
+.sleep-before {
+  margin-right: 115px;
+}
+.sleep-after {
+  margin-right: 115px;
+}

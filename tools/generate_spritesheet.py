@@ -2,6 +2,9 @@ from PIL import Image
 import sys
 import os
 from subprocess import call
+import re
+
+ANIMATE_ONCE_PATTERN = re.compile('.+\-(before|after)$')
 
 
 def main(*args):
@@ -45,15 +48,17 @@ def main(*args):
   animation: @parameters;
 }
 """
+    # print "', '".join(actions)
     for index, sprite_action in enumerate(spritesheet):
         offset_x = 0
         sprite_width, sprite_height = sprite_size[index]
         for sprite_move in sprite_action:
             spritesheet_image.paste(sprite_move, (offset_x, offset_y))
             offset_x += sprite_width
+        animation_loop = 'normal'  # if ANIMATE_ONCE_PATTERN.match(actions[index]) else 'infinite'
         keyframe_args = (actions[index], 0, offset_y, sprite_width * len(sprite_action), offset_y) + \
             tuple(actions[index] for x in range(0, 11)) + \
-            (sprite_width, sprite_height, actions[index], len(sprite_action) * 0.5, len(sprite_action))
+            (sprite_width, sprite_height, actions[index], len(sprite_action) * 0.5, len(sprite_action), animation_loop)
         offset_y += sprite_height
         keyframes = """
 
@@ -84,7 +89,7 @@ def main(*args):
 .%s {
     width: %dpx;
     height: %dpx;
-    .animation( %s-action %ss steps(%d) infinite);
+    .animation(%s-action %ss steps(%d) %s forwards);
 }
         """ % keyframe_args
         less += keyframes
@@ -92,6 +97,6 @@ def main(*args):
     spritesheet_image.save(img_path + 'spritesheet.png', 'PNG')
     with open(css_path + 'spritesheet.less', 'w') as less_file:
         less_file.write(less)
-    call(['lessc', css_path + 'style.less', css_path + 'style.css'])
+    call(['lessc', css_path + 'myhuhu.less', css_path + 'myhuhu.less.css'])
 
 main(*sys.argv[1:])
