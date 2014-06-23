@@ -4,12 +4,12 @@ var version = '1.11.1';
 var huhustyle = document.createElement('link');
 huhustyle.rel = 'stylesheet';
 huhustyle.type = 'text/css';
-huhustyle.href = 'css/myhuhu.less.css';
+huhustyle.href = 'https://firefox.club.tw/huhu/css/myhuhu.less.css';
 document.getElementsByTagName('head')[0].appendChild(huhustyle);
 // check prior inclusion and version
 var script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = 'js/jquery-1.9.1.min.js';
+script.src = 'https://firefox.club.tw/huhu/js/jquery-1.9.1.min.js';
 script.onload = script.onreadystatechange = function(){
     if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
         var $fxQuery = jQuery.noConflict();
@@ -31,6 +31,7 @@ function initHuhu($) {
         var moves = {
             'still': {
                 next: ['still', 'run-left', 'run-right', 'snooze', 'sleep', 'satisfied']
+//                next: ['sleep']
             },
             'eat': {
                 next: ['satisfied']
@@ -43,12 +44,12 @@ function initHuhu($) {
                 next: ['snooze', 'still']
             },
             'run-right': {
-                'hasTtransitMove': true,
-                next: ['run-right', 'run-left', 'still']
+                'hasTransitMove': true,
+                next: ['run-left', 'still']
             },
             'run-left': {
                 'hasTransitMove': true,
-                next: ['run-left', 'run-right', 'still']
+                next: ['run-right', 'still']
             },
             'snooze': {
 
@@ -71,21 +72,39 @@ function initHuhu($) {
         }
         function nextMove(currentClass) {
             var action = currentClass;
+            var status = 'middle';
             if (currentClass.endsWith('-before')) {
                 action = currentClass.substring(0, currentClass.length - 7);
+                status = 'before';
             }
             else if (currentClass.endsWith('-after')) {
                 action = currentClass.substring(0, currentClass.length - 6);
+                status = 'after';
+            }
+            var move = moves[action];
+            var next;
+            if (move.hasTransitMove && status != 'after') {
+                if (status == 'before') {
+                    next = action;
+                }
+                else if (Math.floor(Math.random() * 3) > 0) {
+                    next = action;
+                }
+                else {
+                    next = action + '-after';
+                }
             }
             else {
-
+                var moveKeys = move['next'];
+                next = moveKeys[Math.floor(Math.random() * moveKeys.length)];
+                if (moves[next].hasTransitMove) {
+                    next += '-before';
+                }
             }
-            var moveKeys = moves[action]['next'];
-            var move = moveKeys[Math.floor(Math.random() * moveKeys.length)];
             $huhu.removeClass();
             var elem = $huhu.get(0);
             elem.offsetWidth = elem.offsetWidth;
-            $huhu.addClass(move);
+            $huhu.addClass(next);
         }
         init();
     })();
