@@ -53,7 +53,6 @@ def main(*args):
             spritesheet_image.paste(sprite_move, (offset_x, offset_y))
             offset_x += sprite_width
         animation_loop = 'normal'  # if ANIMATE_ONCE_PATTERN.match(actions[index]) else 'infinite'
-        offset_y += sprite_height
         keyframes = """
 
 .%(move)s-keyframes {
@@ -97,6 +96,7 @@ def main(*args):
             'loop': animation_loop,
         }
         less += keyframes
+        offset_y += sprite_height
 
     spritesheet_image.save(CSS_PATH + 'img/spritesheet.png', 'PNG')
     with open(CSS_PATH + 'spritesheet.less', 'w') as less_file:
