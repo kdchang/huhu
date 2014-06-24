@@ -1,22 +1,20 @@
 from PIL import Image
 import sys
 import os
-from subprocess import call
-import re
+from local import *
+# import re
 
-ANIMATE_ONCE_PATTERN = re.compile('.+\-(before|after)$')
+# ANIMATE_ONCE_PATTERN = re.compile('.+\-(before|after)$')
 
 
 def main(*args):
-    img_path = 'img/'
-    css_path = 'css/'
-    actions = [x for x in os.listdir(img_path) if os.path.isdir(img_path+x)]
+    actions = [x for x in os.listdir(IMG_PATH) if os.path.isdir(IMG_PATH+x)]
     spritesheet = []
     sheet_widths = []
     sheet_height = 0
     sprite_size = []
     for action in actions:
-        action_path = img_path+action
+        action_path = IMG_PATH+action
         print action
         moves = os.listdir(action_path)
         moves.sort()
@@ -24,7 +22,6 @@ def main(*args):
         spritewidths = []
         spriteheights = []
         for move in moves:
-            print move
             move_path = action_path+'/'+move
             image = Image.open(move_path)
             spriterow.append(image)
@@ -56,47 +53,53 @@ def main(*args):
             spritesheet_image.paste(sprite_move, (offset_x, offset_y))
             offset_x += sprite_width
         animation_loop = 'normal'  # if ANIMATE_ONCE_PATTERN.match(actions[index]) else 'infinite'
-        keyframe_args = (actions[index], 0, offset_y, sprite_width * len(sprite_action), offset_y) + \
-            tuple(actions[index] for x in range(0, 11)) + \
-            (sprite_width, sprite_height, actions[index], len(sprite_action) * 0.5, len(sprite_action), animation_loop)
         offset_y += sprite_height
         keyframes = """
 
-.%s-keyframes {
-   from { background-position: -%dpx -%dpx; }
-     to { background-position: -%dpx -%dpx; }
+.%(move)s-keyframes {
+   from { background-position: -%(offset_from_x)dpx -%(offset_y)dpx; }
+     to { background-position: -%(offset_to_x)dpx -%(offset_y)dpx; }
 }
-@-webkit-keyframes %s-action {
-    .%s-keyframes;
-}
-
-@-moz-keyframes %s-action {
-    .%s-keyframes;
+@-webkit-keyframes %(move)s-action {
+    .%(move)s-keyframes;
 }
 
-@-ms-keyframes %s-action {
-    .%s-keyframes;
+@-moz-keyframes %(move)s-action {
+    .%(move)s-keyframes;
 }
 
-@-o-keyframes %s-action {
-    .%s-keyframes;
+@-ms-keyframes %(move)s-action {
+    .%(move)s-keyframes;
 }
 
-@keyframes %s-action {
-    .%s-keyframes;
+@-o-keyframes %(move)s-action {
+    .%(move)s-keyframes;
 }
 
-.%s {
-    width: %dpx;
-    height: %dpx;
-    .animation(%s-action %ss steps(%d) %s forwards);
+@keyframes %(move)s-action {
+    .%(move)s-keyframes;
 }
-        """ % keyframe_args
+
+.%(move)s {
+    width: %(width)dpx;
+    height: %(height)dpx;
+    .animation(%(move)s-action %(seconds)fs steps(%(steps)d) %(loop)s forwards);
+}
+        """ % {
+            'move': actions[index],
+            'offset_from_x': 0,
+            'offset_to_x': sprite_width * len(sprite_action),
+            'offset_y': offset_y,
+            'width': sprite_width,
+            'height': sprite_height,
+            'seconds': len(sprite_action) * 0.5,
+            'steps': len(sprite_action),
+            'loop': animation_loop,
+        }
         less += keyframes
 
-    spritesheet_image.save(img_path + 'spritesheet.png', 'PNG')
-    with open(css_path + 'spritesheet.less', 'w') as less_file:
+    spritesheet_image.save(CSS_PATH + 'img/spritesheet.png', 'PNG')
+    with open(CSS_PATH + 'spritesheet.less', 'w') as less_file:
         less_file.write(less)
-    call(['lessc', css_path + 'myhuhu.less', css_path + 'myhuhu.less.css'])
 
 main(*sys.argv[1:])
