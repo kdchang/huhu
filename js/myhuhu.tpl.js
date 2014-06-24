@@ -1,22 +1,22 @@
 // the minimum version of jQuery we want
 var version = '1.11.1';
 
-var huhustyle = document.createElement('link');
-huhustyle.rel = 'stylesheet';
-huhustyle.type = 'text/css';
-huhustyle.href = '%(base_url)scss/myhuhu.less.css';
-document.getElementsByTagName('head')[0].appendChild(huhustyle);
+var huhuStyle = document.createElement('link');
+huhuStyle.rel = 'stylesheet';
+huhuStyle.type = 'text/css';
+huhuStyle.href = '%(base_url)scss/myhuhu.less.css';
+document.getElementsByTagName('head')[0].appendChild(huhuStyle);
 // check prior inclusion and version
-var script = document.createElement('script');
-script.type = 'text/javascript';
-script.src = '%(base_url)sjs/jquery-1.9.1.min.js';
-script.onload = script.onreadystatechange = function(){
+var huhuScript = document.createElement('script');
+huhuScript.type = 'text/javascript';
+huhuScript.src = '%(base_url)sjs/jquery-1.9.1.min.js';
+huhuScript.onload = huhuScript.onreadystatechange = function(){
     if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
         var $fxQuery = jQuery.noConflict();
         initHuhu($fxQuery);
     }
 };
-document.body.appendChild(script);
+document.body.appendChild(huhuScript);
 
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
