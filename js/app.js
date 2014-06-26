@@ -22,13 +22,16 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery < version) {
 function initMyBookmarklet() {
 	(window.myBookmarklet = function() {
 		// JavaScript code
+		var imageList = ['8-bit-fox-run.gif', '8-bit-fox-abdomen.gif'];
+		// setInterval(function(){var action = }, 6000);
+		var action = '8-bit-fox-run.gif';
 		var $fxQuery = jQuery.noConflict();
 		if($fxQuery('#fox-body').length == 0) {
 			$fxQuery('body').append('<div class="fox-body-div" id="fox-body-div">' + 
-				'<img class="fox-img" id="fox-img" src="//raw.githubusercontent.com/kdchang/huhu/gh-pages/img/8-bit-fox-sleep.gif">' +
+				'<img class="fox-img" id="fox-img" src="//raw.githubusercontent.com/kdchang/huhu/gh-pages/img/' + action + '.gif">' +
 				'<style>'  +
 				// the CSS style 
-				'#fox-body-div {position:fixed; bottom:50px; right:50px;}' + 
+				'#fox-body-div {position:fixed; bottom:100px; right:50px;}' + 
 				'#fox-img {width:150px;}' +
 				'</style>' +
 				'</div>');
