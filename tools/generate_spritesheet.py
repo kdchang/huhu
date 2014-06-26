@@ -98,7 +98,7 @@ def main(*args):
         less += keyframes
         offset_y += sprite_height
 
-    spritesheet_image.save(CSS_PATH + 'img/spritesheet.png', 'PNG')
+    spritesheet_image.save(IMG_PATH + 'img/spritesheet.png', 'PNG')
     with open(CSS_PATH + 'spritesheet.less', 'w') as less_file:
         less_file.write(less)
 
