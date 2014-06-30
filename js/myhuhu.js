@@ -26,8 +26,10 @@ String.prototype.startsWith = function(suffix) {
     return this.indexOf(suffix) == 0;
 };
 
+
 function initHuhu($) {
     (window.myhuhu = function() {
+        var total_hp = 0;
         var moves = {
             'still': {
                 next: ['still', 'run-left', 'run-right', 'snooze', 'sleep', 'satisfied']
@@ -63,12 +65,15 @@ function initHuhu($) {
         var $huhu = $('#myhuhu');
         function init() {
             if($huhu.length == 0) {
-                $('body').append('<div id="myhuhu" class="still"></div>');
+                $('body').append('<div id="myhuhu" draggable="true" class="still"></div>');
                 $huhu = $('#myhuhu');
                 $huhu.on('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function() {
                     nextMove($(this).attr('class'));
                 });
             }
+            $('body').append('<div class="dashboard">hi</div>');
+            $('.dashboard').show();
+            $('.dashboard').hide(10000);
         }
         function nextMove(currentClass) {
             var action = currentClass;
@@ -106,6 +111,79 @@ function initHuhu($) {
             elem.offsetWidth = elem.offsetWidth;
             $huhu.addClass(next);
         }
+
+        function dragMove(){
+            $huhu.on('dragstart', drag);
+            $huhu.on('dragover', allowDrop);
+            $huhu.on('drop', drop)
+
+            $huhu.on('dragstart', function(e){
+                window.hold = true;
+                $('body').attr('onselectstart', 'return false');
+                $huhu.css('right', (100 - e.clientX / $(window).width() * 100) + '%');
+                $huhu.css('bottom', (100 - e.clientY / $(window).height() * 100) + '%');
+                $(window).on('mousemove', function(e) {
+                    $huhu.css('right', (100 - e.clientX / $(window).width() * 100) + '%');
+                    return $huhu.css('bottom', (100 - e.clientY / $(window).height() * 100) + '%');
+                });
+                return $(window).on('drop mouseup mouseleave', function(e) {
+                    $(window).off('mouseup mouseleave mousemove');
+                    $('body').removeAttr('onselectstart');
+                    // $huhu.css('right', (100 - ($huhu.position().left + 300) / $(window).width() * 100) + '%');
+                    // $huhu.css('bottom', '0%');
+                    $huhu.css('right', (100 - e.clientX / $(window).width() * 100) + '%');
+                    $huhu.css('bottom', (100 - e.clientY / $(window).height() * 100) + '%');
+                });
+            });
+
+            function drag(e){
+                //e.dataTransfer.setData("Text", e.target.id);
+            }
+
+            function allowDrop(e){
+                e.preventDefault();
+            }
+
+            function drop(e){
+                var file, files, tip, total_size, _i, _len;
+                var heat = 0;
+
+                e.preventDefault();
+                console.log(e);
+                files = e.originalEvent.dataTransfer.files;
+                console.log(files)
+                console.log(heat);
+                if (files.length > 0) {
+                    total_size = 0;
+                    console.log('yo')
+                    for (_i = 0, _len = files.length; _i < _len; _i++) {
+                        file = files[_i];
+                        total_size += file.size;
+                        console.log(total_size);
+                    }
+                    heat += parseInt(total_size / 1000);
+                    total_hp += parseInt(total_size / 1000);
+                } else {
+                    heat += 2;
+                    total_hp += 2;
+                }
+                console.log('eat eat up', heat);
+                if (heat > 0) {
+                    heat = parseInt(heat, 10);
+                    if (heat > 99) {
+                      heat = 99;
+                    }
+                    $huhu.append(tip = $('<div class="huhu-life-tip" />').text('+' + heat));
+                    setTimeout((function() {
+                      return $(tip).addClass('huhu-show');
+                    }), 300);
+                    setTimeout((function() {
+                      return $(tip).remove();
+                    }), 1000);
+                } 
+            }
+        }
         init();
+        dragMove();
     })();
 }
