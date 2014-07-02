@@ -776,6 +776,9 @@
   bottom: 40px;
   z-index: 1000;
 }
+#myhuhu:hover {
+  cursor: move;
+}
 .run-right {
   margin-right: 115px;
 }
@@ -836,3 +839,16 @@
   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter:alpha(opacity=0)
 }
+
+.dashboard {
+  width: 100px;
+  padding: 100px;
+  background: red;
+}
+/*.drop-down {
+  -moz-transform: translateY(10px);
+  -webkit-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);  
+}*/

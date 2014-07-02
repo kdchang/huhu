@@ -27,6 +27,8 @@ String.prototype.startsWith = function(suffix) {
     return this.indexOf(suffix) == 0;
 };
 
+// Dashboard
+
 function initHuhu($) {
     (window.myhuhu = function() {
         var total_hp = 0;
@@ -63,6 +65,7 @@ function initHuhu($) {
             }
         };
         var $huhu = $('#myhuhu');
+        var $dashboard = $('#dashboard');
         function init() {
             if($huhu.length == 0) {
                 $('body').append('<div id="myhuhu" draggable="true" class="still"></div>');
@@ -71,10 +74,25 @@ function initHuhu($) {
                     nextMove($(this).attr('class'));
                 });
             }
-            $('body').append('<div class="dashboard">hi</div>');
-            $('.dashboard').show();
-            $('.dashboard').hide(10000);
         }
+
+        function dashBoard() {
+            alert('XD');
+            $(document).on('click', function(e){
+                $('#dashboard').hide(1000);               
+            });
+            console.log($('#dashboard').length);
+            if($('#dashboard').length == 0) {
+                $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
+                $('#dashboard').show();
+                console.log($('#dashboard').length);
+            } else {
+                $('#dashboard').hide();
+                alert('x');
+            }
+            console.log($('#dashboard').length);
+        }
+
         function nextMove(currentClass) {
             var action = currentClass;
             var status = 'middle';
@@ -113,56 +131,18 @@ function initHuhu($) {
         }
 
         function dragMove(){
-            // $huhu.on('drop', drop)
-
+            // Drag image object to huhu
             $huhu.on('dragover', function(e){
                 e.preventDefault();
-                $huhu.removeClass();
-                $huhu.addClass('drag');
+                return false;
             });
-
-            $huhu.on('mousedown', function(e){
-                e.preventDefault();
-                var fxdrag = setInterval(dragAction, 10);
-                $('#myhuhu').css('cursor', 'move');
-                $huhu.on('mousemove', function(e) {
-                    e.preventDefault();
-                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
-                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
-                });
-                $huhu.on('drop mouseup', function(e) {
-                    e.preventDefault();
-                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
-                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
-                    $huhu.off('mousemove');
-                });
-                $huhu.on('mouseleave', function(e){
-                    e.preventDefault();
-                    clearInterval(fxdrag);
-                    console.log(e.clientX, e.clientY);
-                });
-            });
-
-
-
-            function dragAction() {
-                $huhu.removeClass();
-                $huhu.addClass('drag');                    
-            }
-            
-            function drag(e){
-                //e.dataTransfer.setData("Text", e.target.id);
-            }
-
-            function allowDrop(e){
-                e.preventDefault();
-            }
-
-            function drop(e){
-                var file, files, tip, total_size, _i, _len;
+            $huhu.on('drop', function(e){
+                var file, files, tip, total_size, i, len;
                 var heat = 0;
-
                 e.preventDefault();
+                $huhu.removeClass();
+                $huhu.addClass('eat');
+
                 console.log(e);
                 files = e.originalEvent.dataTransfer.files;
                 console.log(files)
@@ -170,8 +150,8 @@ function initHuhu($) {
                 if (files.length > 0) {
                     total_size = 0;
                     console.log('yo')
-                    for (_i = 0, _len = files.length; _i < _len; _i++) {
-                        file = files[_i];
+                    for (i = 0, len = files.length; i < len; i++) {
+                        file = files[i];
                         total_size += file.size;
                         console.log(total_size);
                     }
@@ -195,9 +175,45 @@ function initHuhu($) {
                       return $(tip).remove();
                     }), 1000);
                 } 
+                return false;
+            });
+
+            $huhu.on('mouseover', function(e){
+                $('#myhuhu').css('cursor', 'move');
+            });
+
+            // control the position of huhu
+            $huhu.on('mousedown', function(e){
+                e.preventDefault();
+                var fxdrag = setInterval(dragAction, 10);
+                //$('#myhuhu').css('cursor', 'move');
+                $huhu.on('mousemove', function(e) {
+                    e.preventDefault();
+                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
+                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
+                });
+                $huhu.on('mouseup', function(e) {
+                    e.preventDefault();
+                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
+                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
+                    $huhu.off('mousemove');
+                    clearInterval(fxdrag);
+                });
+                $huhu.on('mouseleave', function(e){
+                    e.preventDefault();
+                    clearInterval(fxdrag);
+                    $huhu.off('mousemove');
+                    console.log(e.clientX, e.clientY);
+                });
+            });
+
+            function dragAction() {
+                $huhu.removeClass();
+                $huhu.addClass('drag');                    
             }
         }
         init();
         dragMove();
+        dashBoard();
     })();
 }
