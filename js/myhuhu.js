@@ -16,6 +16,7 @@ script.onload = script.onreadystatechange = function(){
         initHuhu($fxQuery);
     }
 };
+
 document.body.appendChild(script);
 
 String.prototype.endsWith = function(suffix) {
@@ -25,7 +26,6 @@ String.prototype.endsWith = function(suffix) {
 String.prototype.startsWith = function(suffix) {
     return this.indexOf(suffix) == 0;
 };
-
 
 function initHuhu($) {
     (window.myhuhu = function() {
@@ -113,29 +113,43 @@ function initHuhu($) {
         }
 
         function dragMove(){
-            $huhu.on('dragstart', drag);
-            $huhu.on('dragover', allowDrop);
-            $huhu.on('drop', drop)
+            // $huhu.on('drop', drop)
 
-            $huhu.on('dragstart', function(e){
-                window.hold = true;
-                $('body').attr('onselectstart', 'return false');
-                $huhu.css('right', (100 - e.clientX / $(window).width() * 100) + '%');
-                $huhu.css('bottom', (100 - e.clientY / $(window).height() * 100) + '%');
-                $(window).on('mousemove', function(e) {
-                    $huhu.css('right', (100 - e.clientX / $(window).width() * 100) + '%');
-                    return $huhu.css('bottom', (100 - e.clientY / $(window).height() * 100) + '%');
+            $huhu.on('dragover', function(e){
+                e.preventDefault();
+                $huhu.removeClass();
+                $huhu.addClass('drag');
+            });
+
+            $huhu.on('mousedown', function(e){
+                e.preventDefault();
+                var fxdrag = setInterval(dragAction, 10);
+                $('#myhuhu').css('cursor', 'move');
+                $huhu.on('mousemove', function(e) {
+                    e.preventDefault();
+                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
+                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
                 });
-                return $(window).on('drop mouseup mouseleave', function(e) {
-                    $(window).off('mouseup mouseleave mousemove');
-                    $('body').removeAttr('onselectstart');
-                    // $huhu.css('right', (100 - ($huhu.position().left + 300) / $(window).width() * 100) + '%');
-                    // $huhu.css('bottom', '0%');
-                    $huhu.css('right', (100 - e.clientX / $(window).width() * 100) + '%');
-                    $huhu.css('bottom', (100 - e.clientY / $(window).height() * 100) + '%');
+                $huhu.on('drop mouseup', function(e) {
+                    e.preventDefault();
+                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
+                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
+                    $huhu.off('mousemove');
+                });
+                $huhu.on('mouseleave', function(e){
+                    e.preventDefault();
+                    clearInterval(fxdrag);
+                    console.log(e.clientX, e.clientY);
                 });
             });
 
+
+
+            function dragAction() {
+                $huhu.removeClass();
+                $huhu.addClass('drag');                    
+            }
+            
             function drag(e){
                 //e.dataTransfer.setData("Text", e.target.id);
             }
