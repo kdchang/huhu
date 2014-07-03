@@ -4,12 +4,12 @@ var version = '1.11.1';
 var huhustyle = document.createElement('link');
 huhustyle.rel = 'stylesheet';
 huhustyle.type = 'text/css';
-huhustyle.href = 'https://firefox.club.tw/huhu/css/myhuhu.less.css';
+huhustyle.href = 'css/myhuhu.less.css';
 document.getElementsByTagName('head')[0].appendChild(huhustyle);
 // check prior inclusion and version
 var script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = 'https://firefox.club.tw/huhu/js/jquery-1.9.1.min.js';
+script.src = 'js/jquery-1.9.1.min.js';
 script.onload = script.onreadystatechange = function(){
     if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
         var $fxQuery = jQuery.noConflict();
@@ -26,6 +26,8 @@ String.prototype.endsWith = function(suffix) {
 String.prototype.startsWith = function(suffix) {
     return this.indexOf(suffix) == 0;
 };
+
+//dashBoard($fxQuery);
 
 // Dashboard
 
@@ -73,24 +75,8 @@ function initHuhu($) {
                 $huhu.on('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function() {
                     nextMove($(this).attr('class'));
                 });
+                $('body').children().attr('draggable', 'true');
             }
-        }
-
-        function dashBoard() {
-            alert('XD');
-            $(document).on('click', function(e){
-                $('#dashboard').hide(1000);               
-            });
-            console.log($('#dashboard').length);
-            if($('#dashboard').length == 0) {
-                $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
-                $('#dashboard').show();
-                console.log($('#dashboard').length);
-            } else {
-                $('#dashboard').hide();
-                alert('x');
-            }
-            console.log($('#dashboard').length);
         }
 
         function nextMove(currentClass) {
@@ -109,9 +95,11 @@ function initHuhu($) {
             if (move.hasTransitMove && status != 'after') {
                 if (status == 'before') {
                     next = action;
+                    detectMoveRightOrLeft(action);
                 }
                 else if (Math.floor(Math.random() * 3) > 0) {
                     next = action;
+                    detectMoveRightOrLeft(action);
                 }
                 else {
                     next = action + '-after';
@@ -130,20 +118,62 @@ function initHuhu($) {
             $huhu.addClass(next);
         }
 
+        function detectMoveRightOrLeft(action) {
+            if(action == 'run-left') {
+                console.log(action);
+                var index = Math.floor(Math.random() * 3);
+                console.log($huhu.offset());
+                $huhu.css('left', $huhu.offset().left - 10);
+            } else if(action == 'run-right') {
+                console.log(action);
+                console.log($huhu.offset());
+                $huhu.css('left', $huhu.offset().left + 10); 
+            }
+        };
+
+        function dashBoard() {
+            if(typeof ($('#dashboard')) == 'undefined') {
+                $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
+                $('#dashboard').show();
+                console.log($('#dashboard').length);
+            } else {
+                $('#dashboard').hide();
+                //alert('x');
+            }
+            $(document).on('click', function(e){
+                $('#dashboard').hide(1000);               
+            });
+            console.log($('#dashboard').length);
+            //alert('a');
+        };
+
         function dragMove(){
-            // Drag image object to huhu
+            // Save the dragged object 
+            $(document).on('dragstart', function(e){
+                if(typeof(Storage) !== "undefined") {
+                    // Code for localStorage/sessionStorage.
+                    window.dragTheObject = e.target;
+                    console.log(e);
+                } else {
+                    console.log('sorry, your broser')
+                }
+                //e.dataTransfer.setData("text/plain", "This is text to drag")
+                console.log(e);
+                
+            });
+            // Fire the drop event
             $huhu.on('dragover', function(e){
                 e.preventDefault();
                 return false;
             });
+            // drop the object to huhu
             $huhu.on('drop', function(e){
                 var file, files, tip, total_size, i, len;
                 var heat = 0;
+                $(dragTheObject).remove();
                 e.preventDefault();
                 $huhu.removeClass();
                 $huhu.addClass('eat');
-
-                console.log(e);
                 files = e.originalEvent.dataTransfer.files;
                 console.log(files)
                 console.log(heat);
@@ -158,8 +188,8 @@ function initHuhu($) {
                     heat += parseInt(total_size / 1000);
                     total_hp += parseInt(total_size / 1000);
                 } else {
-                    heat += 2;
-                    total_hp += 2;
+                    heat += 3;
+                    total_hp += 3;
                 }
                 console.log('eat eat up', heat);
                 if (heat > 0) {
@@ -177,7 +207,8 @@ function initHuhu($) {
                 } 
                 return false;
             });
-
+            
+            // change the cursor
             $huhu.on('mouseover', function(e){
                 $('#myhuhu').css('cursor', 'move');
             });
@@ -186,14 +217,21 @@ function initHuhu($) {
             $huhu.on('mousedown', function(e){
                 e.preventDefault();
                 var fxdrag = setInterval(dragAction, 10);
-                //$('#myhuhu').css('cursor', 'move');
                 $huhu.on('mousemove', function(e) {
                     e.preventDefault();
-                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
-                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
+                    console.log(e);
+                    $huhu.css('left', 100 - (e.clientX + 100) / $(window).width() * 100 + '%');
+                    $huhu.css('bottom', 100 - (e.clientY + 100) / $(window).height() * 100 + '%');
+
+                    // $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
+                    //$huhu.css('bottom', e.pageY + 'px');
+                    //$huhu.css('left', e.pageX + 'px');
+                    console.log('dd');
+                    console.log((e.clientX) / $(window).width() * 100);
                 });
                 $huhu.on('mouseup', function(e) {
                     e.preventDefault();
+                    console.log(e);
                     $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
                     $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
                     $huhu.off('mousemove');
