@@ -771,9 +771,10 @@
 #myhuhu {
   position: fixed;
   display: block;
-  background-image: url('https://firefox.club.tw/huhu/img/spritesheet.png');
+  background-image: url('img/spritesheet.png');
   right: 40px;
   bottom: 40px;
+  z-index: 1000;
 }
 .run-right {
   margin-right: 115px;
@@ -800,4 +801,49 @@
   -moz-user-select: all !important;
   -webkit-user-select: all !important;
   -ms-user-select: all !important;
+}
+.huhu-life-tip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(255, 159, 22, 0.75);
+  color: #000;
+  font-size: 24px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  display: block;
+  padding: 8px 10px 6px 10px;
+  opacity: 1;
+  font-size: 20px;
+  -ms-filter: none;
+  filter: none;
+}
+.huhu-life-tip.huhu-show {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+  font-size: 20px;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  -ms-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  top: -20px;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.dashboard {
+  width: 100px;
+  padding: 100px;
+  background: red;
+}
+.drop-down {
+  -moz-transform: translateY(10px);
+  -webkit-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
 }
