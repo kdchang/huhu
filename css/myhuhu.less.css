@@ -775,6 +775,10 @@
   right: 40px;
   bottom: 40px;
   z-index: 1000;
+  /*  &:hover {
+    .dashboard;
+  }*/
+
 }
 .run-right {
   margin-right: 115px;
@@ -835,10 +839,41 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
+.progress {
+  position: absolute;
+  left: 0;
+  top: -10px;
+  width: 80px;
+  height: 10px;
+  background: white;
+  border: 1px black;
+  border-style: solid;
+}
+.progress:hover {
+  cursor: pointer;
+}
+.progress-bar {
+  float: left;
+  width: 30%;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: white;
+  text-align: center;
+  background-color: red;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width .6s ease;
+  -o-transition: width .6s ease;
+  transition: width .6s ease;
+}
 .dashboard {
+  display: none;
+  position: absolute;
+  top: -100px;
   width: 100px;
-  padding: 100px;
-  background: red;
+  height: 100px;
+  background: yellow;
 }
 .drop-down {
   -moz-transform: translateY(10px);

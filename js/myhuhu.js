@@ -27,10 +27,6 @@ String.prototype.startsWith = function(suffix) {
     return this.indexOf(suffix) == 0;
 };
 
-//dashBoard($fxQuery);
-
-// Dashboard
-
 function initHuhu($) {
     (window.myhuhu = function() {
         var total_hp = 0;
@@ -66,8 +62,10 @@ function initHuhu($) {
                 next: ['still', 'run-left', 'run-right']
             }
         };
+
         var $huhu = $('#myhuhu');
         var $dashboard = $('#dashboard');
+
         function init() {
             if($huhu.length == 0) {
                 $('body').append('<div id="myhuhu" draggable="true" class="still"></div>');
@@ -119,33 +117,62 @@ function initHuhu($) {
         }
 
         function detectMoveRightOrLeft(action) {
+            //console.log(getPosition(document.querySelector("#myhuhu")));
             if(action == 'run-left') {
                 console.log(action);
+                $('#progress').css('left', '0%');
                 var index = Math.floor(Math.random() * 3);
-                console.log($huhu.offset());
-                $huhu.css('left', $huhu.offset().left - 10);
+                console.log($huhu.position());
+                //$huhu.css('right', getPosition(document.querySelector("#myhuhu")).y);
+                //$huhu.css('right', (100 - ($huhu.getBoundingClientRect().right) / $(window).width() * 100) + '%');
+                //$huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
+                // 5px = 0.5 %
+                // 1273
+                // right: 15.239591516103692%;
+                //alert(((getPosition(document.querySelector("#myhuhu")).y ) / $(window).width() * 100));
+                $huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y ) / $(window).width() * 100) + '%');
             } else if(action == 'run-right') {
                 console.log(action);
-                console.log($huhu.offset());
-                $huhu.css('left', $huhu.offset().left + 10); 
-            }
-        };
+                //console.log($huhu.offset());
+                console.log($huhu.position());
+                $('#progress').css('left', '60%');
+                //$huhu.css('left', $huhu.offset().left + 10);
+                //$huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y) / $(window).height() * 100)); 
+                $huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y) / $(window).width() * 100) + '%');
+            } 
+        }
 
-        function dashBoard() {
-            if(typeof ($('#dashboard')) == 'undefined') {
-                $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
-                $('#dashboard').show();
-                console.log($('#dashboard').length);
-            } else {
-                $('#dashboard').hide();
-                //alert('x');
+        function getPosition(element) {
+            var xPosition = 0;
+            var yPosition = 0;
+          
+            while(element) {
+                xPosition += (element.offsetLeft - $(element).scrollLeft() + element.clientLeft);
+                yPosition += (element.offsetTop - $(element).scrollTop() + element.clientTop);
+                element = element.offsetParent;
             }
-            $(document).on('click', function(e){
-                $('#dashboard').hide(1000);               
+            return { x: xPosition, y: yPosition };
+        }
+        console.log($(document).scrollTop());
+        function dashBoard() {
+            $huhu.append('<div id="dashboard"></div>')
+            $huhu.append('<div id="progress"><div id="progress-bar"></div></div>');
+            $("#dashboard").attr('class', 'dashboard');
+            $("#progress").attr('class', 'progress');
+            $("#progress-bar").attr('class', 'progress-bar');
+            $("#progress").on('mousedown', function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                $("#progress").fadeOut();
+                $( "#dashboard" ).fadeIn('1000');
             });
-            console.log($('#dashboard').length);
-            //alert('a');
-        };
+            $(document).on('mousedown', function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                $('#dashboard').fadeOut('1000');
+                $("#progress").fadeIn();
+            });
+        }
 
         function dragMove(){
             // Save the dragged object 
@@ -153,13 +180,12 @@ function initHuhu($) {
                 if(typeof(Storage) !== "undefined") {
                     // Code for localStorage/sessionStorage.
                     window.dragTheObject = e.target;
-                    console.log(e);
+                    //console.log(e);
                 } else {
-                    console.log('sorry, your broser')
+                    console.log('sorry, your broser cannot support drag event')
                 }
                 //e.dataTransfer.setData("text/plain", "This is text to drag")
-                console.log(e);
-                
+                //console.log(e);               
             });
             // Fire the drop event
             $huhu.on('dragover', function(e){
@@ -175,15 +201,15 @@ function initHuhu($) {
                 $huhu.removeClass();
                 $huhu.addClass('eat');
                 files = e.originalEvent.dataTransfer.files;
-                console.log(files)
-                console.log(heat);
+                //console.log(files)
+                //console.log(heat);
                 if (files.length > 0) {
                     total_size = 0;
-                    console.log('yo')
+                    //console.log('yo')
                     for (i = 0, len = files.length; i < len; i++) {
                         file = files[i];
                         total_size += file.size;
-                        console.log(total_size);
+                        //console.log(total_size);
                     }
                     heat += parseInt(total_size / 1000);
                     total_hp += parseInt(total_size / 1000);
@@ -191,7 +217,7 @@ function initHuhu($) {
                     heat += 3;
                     total_hp += 3;
                 }
-                console.log('eat eat up', heat);
+                //console.log('eat eat up', heat);
                 if (heat > 0) {
                     heat = parseInt(heat, 10);
                     if (heat > 99) {
@@ -206,32 +232,34 @@ function initHuhu($) {
                     }), 1000);
                 } 
                 return false;
-            });
+            })
             
             // change the cursor
             $huhu.on('mouseover', function(e){
-                $('#myhuhu').css('cursor', 'move');
+                $huhu.css('cursor', 'move');
             });
 
             // control the position of huhu
             $huhu.on('mousedown', function(e){
                 e.preventDefault();
+                //console.log(e.target);
                 var fxdrag = setInterval(dragAction, 10);
                 $huhu.on('mousemove', function(e) {
                     e.preventDefault();
-                    console.log(e);
-                    $huhu.css('left', 100 - (e.clientX + 100) / $(window).width() * 100 + '%');
-                    $huhu.css('bottom', 100 - (e.clientY + 100) / $(window).height() * 100 + '%');
+                    e.stopPropagation();
+                    //console.log(e);
+                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
+                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
 
-                    // $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
+                    //$huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
                     //$huhu.css('bottom', e.pageY + 'px');
                     //$huhu.css('left', e.pageX + 'px');
-                    console.log('dd');
-                    console.log((e.clientX) / $(window).width() * 100);
+                    //console.log('dd');
+                    //console.log((e.clientX) / $(window).width() * 100);
                 });
                 $huhu.on('mouseup', function(e) {
                     e.preventDefault();
-                    console.log(e);
+                    //console.log(e);
                     $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
                     $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
                     $huhu.off('mousemove');
@@ -241,7 +269,7 @@ function initHuhu($) {
                     e.preventDefault();
                     clearInterval(fxdrag);
                     $huhu.off('mousemove');
-                    console.log(e.clientX, e.clientY);
+                    //console.log(e.clientX, e.clientY);
                 });
             });
 
@@ -253,5 +281,8 @@ function initHuhu($) {
         init();
         dragMove();
         dashBoard();
+        console.log('HUHU');
+        console.log(document.querySelector("#myhuhu"));
+        console.log(getPosition(document.querySelector("#myhuhu")));
     })();
 }
