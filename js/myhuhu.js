@@ -220,7 +220,7 @@ function initHuhu($) {
                 $huhu.on('mousemove', function(e) {
                     e.preventDefault();
                     console.log(e);
-                    $huhu.css('left', 100 - (e.clientX + 100) / $(window).width() * 100 + '%');
+                    $huhu.css('right', 100 - (e.clientX + 100) / $(window).width() * 100 + '%');
                     $huhu.css('bottom', 100 - (e.clientY + 100) / $(window).height() * 100 + '%');
 
                     // $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
