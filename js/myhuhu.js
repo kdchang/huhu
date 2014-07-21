@@ -86,11 +86,8 @@ function initHuhu($) {
         }
 
         function nextMove(currentClass) {
-            console.log(currentClass);
             var preAction = currentClass.split(' ', 1);
-            console.log(preAction[0]);
             var action = preAction[0];
-            console.log(action);
             var status = 'middle';
             if (currentClass.endsWith('-before')) {
                 action = currentClass.substring(0, currentClass.length - 7);
@@ -250,42 +247,6 @@ function initHuhu($) {
             $huhu.on('mouseover', function(e){
                 $huhu.css('cursor', 'move');
             });
-
-
-
-            // control the position of huhu
-            // $huhu.on('mousedown', function(e){
-            //     e.preventDefault();
-            //     //console.log(e.target);
-            //     var fxdrag = setInterval(dragAction, 10);
-            //     $huhu.on('mousemove', function(e) {
-            //         e.preventDefault();
-            //         e.stopPropagation();
-            //         //console.log(e);
-            //         $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
-            //         $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
-
-            //         //$huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
-            //         //$huhu.css('bottom', e.pageY + 'px');
-            //         //$huhu.css('left', e.pageX + 'px');
-            //         //console.log('dd');
-            //         //console.log((e.clientX) / $(window).width() * 100);
-            //     });
-            //     $huhu.on('mouseup', function(e) {
-            //         e.preventDefault();
-            //         //console.log(e);
-            //         $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%');
-            //         $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
-            //         $huhu.off('mousemove');
-            //         clearInterval(fxdrag);
-            //     });
-            //     $huhu.on('mouseleave', function(e){
-            //         e.preventDefault();
-            //         clearInterval(fxdrag);
-            //         $huhu.off('mousemove');
-            //         //console.log(e.clientX, e.clientY);
-            //     });
-            // });
 
             function dragAction() {
                 $huhu.removeClass();
