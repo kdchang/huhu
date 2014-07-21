@@ -88,13 +88,14 @@ function initHuhu($) {
         function nextMove(currentClass) {
             var preAction = currentClass.split(' ', 1);
             var action = preAction[0];
+            console.log(action);
             var status = 'middle';
-            if (currentClass.endsWith('-before')) {
-                action = currentClass.substring(0, currentClass.length - 7);
+            if (action.endsWith('-before')) {
+                action = action.substring(0, action.length - 7);
                 status = 'before';
             }
-            else if (currentClass.endsWith('-after')) {
-                action = currentClass.substring(0, currentClass.length - 6);
+            else if (action.endsWith('-after')) {
+                action = action.substring(0, action.length - 6);
                 status = 'after';
             }
             var move = moves[action];
@@ -132,14 +133,15 @@ function initHuhu($) {
                 $('#progress').css('left', '0%');
                 var index = Math.floor(Math.random() * 3);
                 console.log($huhu.position());
-                //$huhu.css('right', getPosition(document.querySelector("#myhuhu")).y);
+                $huhu.css('right', getPosition(document.querySelector("#myhuhu")).y - $huhu.width);
+                alert($huhu.width);
                 //$huhu.css('right', (100 - ($huhu.getBoundingClientRect().right) / $(window).width() * 100) + '%');
                 //$huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%');
                 // 5px = 0.5 %
                 // 1273
                 // right: 15.239591516103692%;
                 //alert(((getPosition(document.querySelector("#myhuhu")).y ) / $(window).width() * 100));
-                $huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y ) / $(window).width() * 100) + '%');
+                //$huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y ) / $(window).width() * 100) + '%');
             } else if(action == 'run-right') {
                 console.log(action);
                 //console.log($huhu.offset());
@@ -147,7 +149,7 @@ function initHuhu($) {
                 $('#progress').css('left', '60%');
                 //$huhu.css('left', $huhu.offset().left + 10);
                 //$huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y) / $(window).height() * 100)); 
-                $huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y) / $(window).width() * 100) + '%');
+                //$huhu.css('right', ((getPosition(document.querySelector("#myhuhu")).y) / $(window).width() * 100) + '%');
             } 
         }
 
