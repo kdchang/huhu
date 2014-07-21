@@ -1,6 +1,6 @@
 // the minimum version of jQuery we want
 var version = '1.11.1';
-
+var $fxQuery;
 var huhuStyle = document.createElement('link');
 huhuStyle.rel = 'stylesheet';
 huhuStyle.type = 'text/css';
@@ -12,12 +12,19 @@ huhuScript.type = 'text/javascript';
 huhuScript.src = '%(base_url)sjs/jquery-1.9.1.min.js';
 huhuScript.onload = huhuScript.onreadystatechange = function(){
     if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
-        var $fxQuery = jQuery.noConflict();
+        $fxQuery = jQuery.noConflict();
+    }
+};
+var huhuJuiScript = document.createElement('script');
+huhuJuiScript.type = 'text/javascript';
+huhuJuiScript.src = '%(base_url)sjs/jquery-ui-1.11.0.js';
+huhuJuiScript.onload = huhuScript.onreadystatechange = function(){
+    if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
         initHuhu($fxQuery);
     }
 };
-
 document.body.appendChild(huhuScript);
+document.body.appendChild(huhuJuiScript);
 
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
@@ -74,11 +81,13 @@ function initHuhu($) {
                     nextMove($(this).attr('class'));
                 });
                 $('body').children().attr('draggable', 'true');
+                $('#myhuhu').draggable();
             }
         }
 
         function nextMove(currentClass) {
-            var action = currentClass;
+            var preAction = currentClass.split(' ', 1);
+            var action = preAction[0];
             var status = 'middle';
             if (currentClass.endsWith('-before')) {
                 action = currentClass.substring(0, currentClass.length - 7);
@@ -154,25 +163,25 @@ function initHuhu($) {
             return { x: xPosition, y: yPosition };
         }
         console.log($(document).scrollTop());
-        function dashBoard() {
-            $huhu.append('<div id="dashboard"></div>')
-            $huhu.append('<div id="progress"><div id="progress-bar"></div></div>');
-            $("#dashboard").attr('class', 'dashboard');
-            $("#progress").attr('class', 'progress');
-            $("#progress-bar").attr('class', 'progress-bar');
-            $("#progress").on('mousedown', function(e){
-                e.stopPropagation();
-                e.preventDefault();
-                $("#progress").fadeOut();
-                $( "#dashboard" ).fadeIn('1000');
-            });
-            $(document).on('mousedown', function(e){
-                e.stopPropagation();
-                e.preventDefault();
-                $('#dashboard').fadeOut('1000');
-                $("#progress").fadeIn();
-            });
-        }
+        // function dashBoard() {
+        //     $huhu.append('<div id="dashboard"></div>')
+        //     $huhu.append('<div id="progress"><div id="progress-bar"></div></div>');
+        //     $("#dashboard").attr('class', 'dashboard');
+        //     $("#progress").attr('class', 'progress');
+        //     $("#progress-bar").attr('class', 'progress-bar');
+        //     $("#progress").on('mousedown', function(e){
+        //         e.stopPropagation();
+        //         e.preventDefault();
+        //         $("#progress").fadeOut();
+        //         $( "#dashboard" ).fadeIn('1000');
+        //     });
+        //     $(document).on('mousedown', function(e){
+        //         e.stopPropagation();
+        //         e.preventDefault();
+        //         $('#dashboard').fadeOut('1000');
+        //         $("#progress").fadeIn();
+        //     });
+        // }
 
         function dragMove(){
             // Save the dragged object 
@@ -239,39 +248,41 @@ function initHuhu($) {
                 $huhu.css('cursor', 'move');
             });
 
-            // control the position of huhu
-            $huhu.on('mousedown', function(e){
-                e.preventDefault();
-                //console.log(e.target);
-                var fxdrag = setInterval(dragAction, 10);
-                $huhu.on('mousemove', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    //console.log(e);
-                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%%');
-                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%%');
 
-                    //$huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%%');
-                    //$huhu.css('bottom', e.pageY + 'px');
-                    //$huhu.css('left', e.pageX + 'px');
-                    //console.log('dd');
-                    //console.log((e.clientX) / $(window).width() * 100);
-                });
-                $huhu.on('mouseup', function(e) {
-                    e.preventDefault();
-                    //console.log(e);
-                    $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%%');
-                    $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%%');
-                    $huhu.off('mousemove');
-                    clearInterval(fxdrag);
-                });
-                $huhu.on('mouseleave', function(e){
-                    e.preventDefault();
-                    clearInterval(fxdrag);
-                    $huhu.off('mousemove');
-                    //console.log(e.clientX, e.clientY);
-                });
-            });
+
+            // control the position of huhu
+            // $huhu.on('mousedown', function(e){
+            //     e.preventDefault();
+            //     //console.log(e.target);
+            //     var fxdrag = setInterval(dragAction, 10);
+            //     $huhu.on('mousemove', function(e) {
+            //         e.preventDefault();
+            //         e.stopPropagation();
+            //         //console.log(e);
+            //         $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%%');
+            //         $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%%');
+
+            //         //$huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%%');
+            //         //$huhu.css('bottom', e.pageY + 'px');
+            //         //$huhu.css('left', e.pageX + 'px');
+            //         //console.log('dd');
+            //         //console.log((e.clientX) / $(window).width() * 100);
+            //     });
+            //     $huhu.on('mouseup', function(e) {
+            //         e.preventDefault();
+            //         //console.log(e);
+            //         $huhu.css('right', (100 - (e.clientX + 100) / $(window).width() * 100) + '%%');
+            //         $huhu.css('bottom', (100 - (e.clientY + 100) / $(window).height() * 100) + '%%');
+            //         $huhu.off('mousemove');
+            //         clearInterval(fxdrag);
+            //     });
+            //     $huhu.on('mouseleave', function(e){
+            //         e.preventDefault();
+            //         clearInterval(fxdrag);
+            //         $huhu.off('mousemove');
+            //         //console.log(e.clientX, e.clientY);
+            //     });
+            // });
 
             function dragAction() {
                 $huhu.removeClass();
@@ -280,9 +291,10 @@ function initHuhu($) {
         }
         init();
         dragMove();
-        dashBoard();
+        //dashBoard();
         console.log('HUHU');
         console.log(document.querySelector("#myhuhu"));
         console.log(getPosition(document.querySelector("#myhuhu")));
+        
     })();
 }
