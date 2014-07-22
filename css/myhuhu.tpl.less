@@ -3,7 +3,7 @@
 #myhuhu {
   position: fixed;
   display: block;
-  background-image: url('%(base_url)simg/spritesheet.png');
+  width: 180px;
   right: 40px;
   bottom: 40px;
   z-index: 1000;
@@ -12,26 +12,30 @@
   }*/
 }
 
+#myhuhu-sprite {
+  background-image: url('%(base_url)simg/spritesheet.png');
+} 
+
 .run-right {
-  margin-right: 115px;
+  margin-left: -115px;
 }
 .run-right-before {
-  margin-right: 115px;
+  margin-left: -115px;
 }
 .run-right-after {
-  margin-right: 115px;
+  margin-left: -115px;
 }
 .sleep {
-  margin-bottom: -8px;
-  margin-right: 94px;
+  margin-top: 8px;
+  margin-left: -94px;
 }
 .sleep-before {
-  margin-bottom: -8px;
-  margin-right: 94px;
+  margin-top: 8px;
+  margin-left: -94px;
 }
 .sleep-after {
-  margin-bottom: -8px;
-  margin-right: 94px;
+  margin-top: 8px;
+  margin-left: -94px;
 }
 
 .btn {
@@ -120,4 +124,10 @@
   -o-transform: translateY(10px);
   -ms-transform: translateY(10px);
   transform: translateY(10px);  
+}
+
+.context-menu {
+  width: 100px;
+  height: 150px;
+  background: red;
 }
