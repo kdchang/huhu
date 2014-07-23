@@ -25,8 +25,14 @@ huhuJuiScript.onload = huhuScript.onreadystatechange = function() {
         initHuhu($fxQuery);
     }
 };
+// include circle
+var circleScript = document.createElement('script');
+circleScript.type = 'text/javascript';
+circleScript.src = 'js/circles.min.js';
+
 document.body.appendChild(huhuScript);
 document.body.appendChild(huhuJuiScript);
+document.body.appendChild(circleScript);
 
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
@@ -38,7 +44,7 @@ String.prototype.startsWith = function(suffix) {
 
 function initHuhu($) {
     (window.myhuhu = function() {
-        var total_hp = 0;
+        var total_blood = 70;
         var moves = {
             'still': {
                 next: ['still', 'run-left', 'run-right', 'snooze', 'sleep', 'satisfied']
@@ -91,7 +97,7 @@ function initHuhu($) {
                 $('body').children().attr('draggable', 'true');
 
                 // the huhu draggable action
-                $('#myhuhu').draggable({
+                $huhu.draggable({
                     start: function() {
                         function dragAction() {
                             $huhuSprite.removeClass();
@@ -192,17 +198,58 @@ function initHuhu($) {
         console.log($(document).scrollTop());
 
         function dashBoard() {
-            $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
-            //console.log($huhu);
-            // var myhu = document.getElementById('myhuhu');
-            // myhu.oncontextmenu = function() {console.log('XDDDDD');return false;}
-            $huhu.on("contextmenu", function(e){
-                console.log('XD');
-                $('#dashboard').show();
-                $('#dashboard').css('left', getPosition(document.querySelector("#myhuhu")).x + 100 + "px");
-                return false;
+            if($('#dashboard').length == 0) {
+                //<h2 id="dashboard-title">Huhu(狐狐)</h2>
+                $('body').append('<div id="dashboard"><div class="huhu-blood-circle" id="huhu-blood-cicle"></div></div>');
+                $('#dashboard').append('<div><button id="dashboard-img-btn">吃了什麼圖</button></div><div><button id="dashboard-msg-huhu">發信給狐狐</button></div><div id="dashboard-footer"><p>made with <span id="love">♥</span> in Mozilla Taiwan</p></div>');
+                $('#dashboard').addClass('dashboard');
+                //$('#dashboard-title').addClass('dashboard-title');
+                $('#dashboard-img-btn').addClass('dashboard-img-btn dashboard-btn');
+                $('#dashboard-msg-huhu').addClass('dashboard-msg-huhu dashboard-btn');
+                $('#dashboard-footer').addClass('dashboard-footer');
+                $('#love').addClass('love');
+                $huhu.on("contextmenu", function(e){
+                    console.log('XD');
+                    updateBlood(total_blood, 1);
+                    $('#dashboard').toggleClass('slide-in');
+                    // circle API
+
+                    return false;
+                });
+            } else {
+
+            }
+
+            // circle
+            var myCircle = Circles.create({
+                id:         'huhu-blood-cicle',
+                radius:     70,
+                value:      total_blood,
+                maxValue:   100,
+                width:      10,
+                text:       function(value){return value + '%';},
+                colors:     ['#FFFFFF', 'rgb(0, 255, 153)'],
+                duration:   400,
+                wrpClass:   'circles-wrp',
+                textClass:  'circles-text'
+            })
+
+            // click & hide dashboard  
+            $(document).on('click', function(e){
+                $('#dashboard').removeClass('slide-in'); 
             });
-            
+
+            function updateBlood(blood, duration) {
+                myCircle.update(blood, duration);
+            }
+            // if($('#dashboard').length == 0) {
+            //     $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
+            //     $('#dashboard').show();
+            //     console.log($('#dashboard').length);
+            // } else {
+            //     $('#dashboard').hide();
+            //     alert('x');
+            // }
             // document.oncontextmenu = function() {return false;};
             // $huhu.mousedown(function(e){ 
             //     if( e.button == 2 ) { 
@@ -211,6 +258,20 @@ function initHuhu($) {
             // } 
             //     return true; 
             // }); 
+            setInterval((function() {
+                if(total_blood > 0) {
+                    updateBlood(total_blood, 100);
+                }
+                updateBlood(total_blood, 100);
+            }), 100);
+
+            setInterval((function() {
+                if(total_blood > 0) {
+                    total_blood -= 1;
+                    updateBlood(total_blood, 100);
+                }
+                updateBlood(total_blood, 100);
+            }), 10000);
         }
 
         function dragObject() {
@@ -219,9 +280,9 @@ function initHuhu($) {
                 if (typeof(Storage) !== "undefined") {
                     // Code for localStorage/sessionStorage.
                     window.dragTheObject = e.target;
-                    //console.log(e);
+                    // console.log(e);
                 } else {
-                    console.log('sorry, your broser cannot support drag event')
+                    console.log('sorry, your broser cannot support drag event');
                 }
                 //e.dataTransfer.setData("text/plain", "This is text to drag")
                 //console.log(e);               
@@ -251,17 +312,17 @@ function initHuhu($) {
                         total_size += file.size;
                         //console.log(total_size);
                     }
-                    heat += parseInt(total_size / 1000);
-                    total_hp += parseInt(total_size / 1000);
+                    heat += parseInt(total_size / 10000);
+                    total_blood += parseInt(total_size / 10000);
                 } else {
-                    heat += 3;
-                    total_hp += 3;
+                    heat += 5;
+                    total_blood += 5;
                 }
                 //console.log('eat eat up', heat);
                 if (heat > 0) {
                     heat = parseInt(heat, 10);
-                    if (heat > 99) {
-                        heat = 99;
+                    if (heat > 100) {
+                        heat = 100;
                     }
                     $huhu.append(tip = $('<div class="huhu-life-tip" />').text('+' + heat));
                     setTimeout((function() {

@@ -3,7 +3,8 @@
 #myhuhu {
   position: fixed;
   display: block;
-  width: 180px;
+  width: 100px;
+  height: 100px;
   right: 40px;
   bottom: 40px;
   z-index: 1000;
@@ -110,12 +111,82 @@
 }
 
 .dashboard {
-  display: none;
+  right: -210px;
+  top: 0;
+  width: 210px;
+  height: 100%%;
   position: absolute;
-  top: -100px;
-  width: 100px;
-  height: 100px;
-  background: yellow;
+  transition: 1s;
+  background: rgb(63,76,107); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(63,76,107,1) 0%%, rgba(63,76,107,1) 100%%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%%,rgba(63,76,107,1)), color-stop(100%%,rgba(63,76,107,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(63,76,107,1) 0%%,rgba(63,76,107,1) 100%%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(63,76,107,1) 0%%,rgba(63,76,107,1) 100%%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(63,76,107,1) 0%%,rgba(63,76,107,1) 100%%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(63,76,107,1) 0%%,rgba(63,76,107,1) 100%%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+  -webkit-box-shadow: -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
+  box-shadow:         -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
+}
+
+.dashboard.slide-in {
+  right: 0;
+  transition: 1s;
+}
+
+/*.dashboard-title {
+  color:  #F9F900;
+  text-align: center;
+  margin-top: 30px;
+}*/
+
+.dashboard-btn {
+  display: block;
+  margin: 25px auto;
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+/*  text-shadow:#b2e2f5 0 1px 0;*/
+  font-weight: bold !important;
+  cursor: pointer;
+  font-size: 1.2em;
+  background: rgba(255, 98, 0, 0.9);
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+/*  -webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+  -moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+  box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;*/
+  border:1px solid rgb(255, 102, 0);
+  border-bottom-color: rgb(255, 107, 0);
+}
+
+.dashboard-img-btn:hover {
+  background: rgb(255, 136, 0);
+}
+
+.dashboard-msg-huhu:hover {
+  background: rgb(255, 136, 0);
+}
+
+.dashboard-footer {
+  position: absolute;
+  bottom: 5px;
+  min-width: 210px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.love {
+  color: rgba(255, 0, 0, 0.8);
+}
+
+.huhu-blood-circle {
+  display: block;
+  margin-top: 50px;
+  text-align: center;
+  color: white;
 }
 
 .drop-down {
@@ -124,10 +195,4 @@
   -o-transform: translateY(10px);
   -ms-transform: translateY(10px);
   transform: translateY(10px);  
-}
-
-.context-menu {
-  width: 100px;
-  height: 150px;
-  background: red;
 }
