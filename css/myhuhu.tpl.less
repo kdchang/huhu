@@ -112,11 +112,17 @@
 
 .dashboard {
   right: -210px;
+/*  display: none;*/
   top: 0;
   width: 210px;
   height: 100%%;
   position: absolute;
-  transition: 1s;
+  transition: right 2s; 
+  -webkit-transition: right 2s; 
+  -moz-transition: right 2s; 
+  -ms-transition: right 2s; 
+  -o-transition: right 2s; 
+
   background: rgb(63,76,107); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(63,76,107,1) 0%%, rgba(63,76,107,1) 100%%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%%,rgba(63,76,107,1)), color-stop(100%%,rgba(63,76,107,1))); /* Chrome,Safari4+ */
@@ -128,13 +134,31 @@
   -webkit-box-shadow: -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
   box-shadow:         -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
+
+/*  -moz-transition-property: background-color, color, right;
+  -moz-transition-duration: 5s;
+  -webkit-transition-property: background-color, color, right;
+  -webkit-transition-duration: 5s;
+  -o-transition-property: background-color, color, right;
+  -o-transition-duration: 5s;*/
 }
 
 .dashboard.slide-in {
   right: 0;
-  transition: 1s;
-}
+/*  transition: right 1s; 
+  -webkit-transition: right 1s; 
+  -moz-transition: right 1s; 
+  -ms-transition: right 1s; 
+  -o-transition: right 1s; */
 
+
+/*  -moz-transition-property: background-color, color, right;
+  -moz-transition-duration: 5s;
+  -webkit-transition-property: background-color, color, right;
+  -webkit-transition-duration: 5s;
+  -o-transition-property: background-color, color, right;
+  -o-transition-duration: 5s;*/
+}
 /*.dashboard-title {
   color:  #F9F900;
   text-align: center;
@@ -144,14 +168,14 @@
 .dashboard-btn {
   display: block;
   margin: 25px auto;
-  width: 150px;
+  width: 160px;
   padding: 10px;
   text-align: center;
 /*  text-shadow:#b2e2f5 0 1px 0;*/
   font-weight: bold !important;
   cursor: pointer;
   font-size: 1.2em;
-  background: rgba(255, 98, 0, 0.9);
+  background: rgb(255, 107, 0);
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -159,7 +183,7 @@
   -moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
   box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;*/
   border:1px solid rgb(255, 102, 0);
-  border-bottom-: 2px solid rgb(255, 107, 0);
+  border-bottom: 5px solid rgb(255, 43, 0);
 }
 
 .dashboard-img-btn:hover {

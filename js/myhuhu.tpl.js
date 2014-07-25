@@ -22,17 +22,21 @@ huhuJuiScript.type = 'text/javascript';
 huhuJuiScript.src = '%(base_url)sjs/jquery-ui-1.11.0.js';
 huhuJuiScript.onload = huhuScript.onreadystatechange = function() {
     if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
-        initHuhu($fxQuery);
+        // include circle
+        var circleScript = document.createElement('script');
+        circleScript.type = 'text/javascript';
+        circleScript.src = '%(base_url)sjs/circles.min.js';
+        circleScript.onload = huhuScript.onreadystatechange = function() {
+            if (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
+                initHuhu($fxQuery);    
+            }
+        };
+        document.body.appendChild(circleScript);
     }
 };
-// include circle
-var circleScript = document.createElement('script');
-circleScript.type = 'text/javascript';
-circleScript.src = '%(base_url)sjs/circles.min.js';
 
 document.body.appendChild(huhuScript);
 document.body.appendChild(huhuJuiScript);
-document.body.appendChild(circleScript);
 
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
@@ -201,23 +205,26 @@ function initHuhu($) {
             if($('#dashboard').length == 0) {
                 //<h2 id="dashboard-title">Huhu(狐狐)</h2>
                 $('body').append('<div id="dashboard"><div class="huhu-blood-circle" id="huhu-blood-cicle"></div></div>');
-                $('#dashboard').append('<div><button id="dashboard-img-btn">吃了什麼圖</button></div><div><button id="dashboard-msg-huhu">發信給狐狐</button></div><div id="dashboard-footer"><p>made with <span id="love">♥</span> in Mozilla Taiwan</p></div>');
+                $('#dashboard').append('<div><button id="dashboard-img-btn">吃了什麼圖</button></div><div><button id="dashboard-msg-huhu">問狐狐問題</button></div>');
+                $('#dashboard').append('<div id="msg-board"></div>');
+                $('#dashboard').append('<div id="dashboard-footer"><p>made with <span id="love">♥</span> in Mozilla Taiwan</p></div>');
                 $('#dashboard').addClass('dashboard');
                 //$('#dashboard-title').addClass('dashboard-title');
                 $('#dashboard-img-btn').addClass('dashboard-img-btn dashboard-btn');
                 $('#dashboard-msg-huhu').addClass('dashboard-msg-huhu dashboard-btn');
+                $('#msg-board').addClass('msg-board');
                 $('#dashboard-footer').addClass('dashboard-footer');
                 $('#love').addClass('love');
-                $huhu.on("contextmenu", function(e){
-                    console.log('XD');
-                    updateBlood(total_blood, 1);
-                    $('#dashboard').toggleClass('slide-in');
-                    // circle API
 
-                    return false;
+                $('#dashboard-img-btn').on('click', function(){
+                    $('#msg-board').html('<input type="text" placeholder="想對狐狐說啥？"/>')
+                });
+
+                $('#dashboard-msg-huhu').on('click', function(){
+                    $('#msg-board').html('<div id="msg-content"></div><div id="msg-bar"><input id="type-msg-input" type="text" placeholder="想問狐狐啥？"/><button id="msg-submit">送出</button></div>')
                 });
             } else {
-
+//http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi
             }
 
             // circle
@@ -234,14 +241,60 @@ function initHuhu($) {
                 textClass:  'circles-text'
             })
 
-            // click & hide dashboard  
-            $(document).on('click', function(e){
-                $('#dashboard').removeClass('slide-in'); 
+            $('body').on('click', '#msg-submit', function() {
+                //makeCorsRequest();
+                //var jqxhr = $.ajax( "http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=" + $('#type-msg-input').val() )
+                // $.get( "http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi", function( data ) {
+                //     console.log(data);
+                //     alert( "Load was performed." );
+                // });
+function reqListener () {
+  console.log(this.responseText);
+}
+
+// var oReq = new XMLHttpRequest();
+// oReq.onload = reqListener;
+// oReq.open("get", "http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi&callback=myCallback?", true);
+// oReq.send();
+                var url = 'http://www.tuling123.com/openapi/api';
+                $.ajax({
+                    url: url,
+                    data: {
+                        key: 'fb17eceaf7166871a0c5a45ecdaf6895',
+                        info: 'hi'
+                    },
+                    type:"GET",
+                    dataType:'jsonp json',
+                    beforeSend: function(xhr) {
+                        xhr.overrideMimeType("application/json; charset=utf-8")
+                    }
+                }).done(function(msg){
+                    alert(msg);
+                }).fail(function(xhr, status){ 
+                    alert(status);
+                });
             });
+
+//合成圖
+            $huhu.on("contextmenu", function(e){
+                console.log('XD');
+                //alert('contextmenu');                
+                $('#dashboard').toggleClass('slide-in');
+                updateBlood(total_blood, 1);
+                // circle API
+                return false;
+            });
+
+            // click & hide dashboard  
+            // $(document).on('click', function(e){
+            //     $('#dashboard').removeClass('slide-in'); 
+            // });
 
             function updateBlood(blood, duration) {
                 myCircle.update(blood, duration);
             }
+
+
             // if($('#dashboard').length == 0) {
             //     $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
             //     $('#dashboard').show();
@@ -296,14 +349,16 @@ function initHuhu($) {
             // drop the object to huhu and save the image url
             $huhu.on('drop', function(e) {
                 var file, files, tip, total_size, i, len;
-                var heat = 0;
+                var blood = 0;
+                // the huhu eat object will be remove
                 $(dragTheObject).remove();
                 e.preventDefault();
                 $huhuSprite.removeClass();
                 $huhuSprite.addClass('eat');
                 files = e.originalEvent.dataTransfer.files;
+                console.log(files)
                 //console.log(files)
-                //console.log(heat);
+                //console.log(blood);
                 if (files.length > 0) {
                     total_size = 0;
                     //console.log('yo')
@@ -312,19 +367,19 @@ function initHuhu($) {
                         total_size += file.size;
                         //console.log(total_size);
                     }
-                    heat += parseInt(total_size / 10000);
+                    blood += parseInt(total_size / 10000);
                     total_blood += parseInt(total_size / 10000);
                 } else {
-                    heat += 5;
+                    blood += 5;
                     total_blood += 5;
                 }
-                //console.log('eat eat up', heat);
-                if (heat > 0) {
-                    heat = parseInt(heat, 10);
-                    if (heat > 100) {
-                        heat = 100;
+                //console.log('eat eat up', blood);
+                if (blood > 0) {
+                    blood = parseInt(blood, 10);
+                    if (blood > 100) {
+                        blood = 100;
                     }
-                    $huhu.append(tip = $('<div class="huhu-life-tip" />').text('+' + heat));
+                    $huhu.append(tip = $('<div class="huhu-life-tip" />').text('+' + blood));
                     setTimeout((function() {
                         return $(tip).addClass('huhu-show');
                     }), 300);
@@ -341,9 +396,10 @@ function initHuhu($) {
                 $huhu.css('cursor', 'move');
             });
         }
-
+// $('body').append('<img src="./css/img/8-bit-fox-run.gif">')
         init();
         dragObject();
         dashBoard();
+
     })();
 }

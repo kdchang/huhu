@@ -872,11 +872,16 @@
 }
 .dashboard {
   right: -210px;
+  /*  display: none;*/
   top: 0;
   width: 210px;
   height: 100%;
   position: absolute;
-  transition: 1s;
+  transition: right 2s;
+  -webkit-transition: right 2s;
+  -moz-transition: right 2s;
+  -ms-transition: right 2s;
+  -o-transition: right 2s;
   background: #3f4c6b;
   /* Old browsers */
   background: -moz-linear-gradient(top, #3f4c6b 0%, #3f4c6b 100%);
@@ -896,10 +901,26 @@
   -webkit-box-shadow: -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
   box-shadow: -1px 0px 3px 3px rgba(50, 50, 50, 0.75);
+  /*  -moz-transition-property: background-color, color, right;
+  -moz-transition-duration: 5s;
+  -webkit-transition-property: background-color, color, right;
+  -webkit-transition-duration: 5s;
+  -o-transition-property: background-color, color, right;
+  -o-transition-duration: 5s;*/
 }
 .dashboard.slide-in {
   right: 0;
-  transition: 1s;
+  /*  transition: right 1s; 
+  -webkit-transition: right 1s; 
+  -moz-transition: right 1s; 
+  -ms-transition: right 1s; 
+  -o-transition: right 1s; */
+  /*  -moz-transition-property: background-color, color, right;
+  -moz-transition-duration: 5s;
+  -webkit-transition-property: background-color, color, right;
+  -webkit-transition-duration: 5s;
+  -o-transition-property: background-color, color, right;
+  -o-transition-duration: 5s;*/
 }
 /*.dashboard-title {
   color:  #F9F900;
@@ -909,14 +930,14 @@
 .dashboard-btn {
   display: block;
   margin: 25px auto;
-  width: 150px;
+  width: 160px;
   padding: 10px;
   text-align: center;
   /*  text-shadow:#b2e2f5 0 1px 0;*/
   font-weight: bold !important;
   cursor: pointer;
   font-size: 1.2em;
-  background: rgba(255, 98, 0, 0.9);
+  background: #ff6b00;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -924,7 +945,7 @@
   -moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
   box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;*/
   border: 1px solid #ff6600;
-  border-bottom-color: #ff6b00;
+  border-bottom: 5px solid #ff2b00;
 }
 .dashboard-img-btn:hover {
   background: #ff8800;
