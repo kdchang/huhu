@@ -786,7 +786,7 @@
 .run-right {
   margin-left: -115px;
 }
-.run-right-before {
+njhj .run-right-before {
   margin-left: -115px;
 }
 .run-right-after {
@@ -972,7 +972,7 @@
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  border: 1px solid rgbrgb(0, 246, 255);
+  border: 1px solid #00f6ff;
   border-bottom: 5px solid #00f6ff;
 }
 .dashboard-footer {

@@ -32,12 +32,16 @@ huhuJuiScript.onload = huhuScript.onreadystatechange = function() {
             }
         };
         document.body.appendChild(circleScript);
+
+        var tsSwitchScript = document.createElement('script');
+        tsSwitchScript.type = 'text/javascript';
+        tsSwitchScript.src = '%(base_url)sjs/tongwen_st.js';
+        document.body.appendChild(tsSwitchScript);
     }
 };
 
 document.body.appendChild(huhuScript);
 document.body.appendChild(huhuJuiScript);
-
 
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
@@ -49,7 +53,7 @@ String.prototype.startsWith = function(suffix) {
 
 function initHuhu($) {
     (window.myhuhu = function() {
-        var total_blood = 70;
+        var total_blood = 6;
         var moves = {
             'still': {
                 next: ['still', 'run-left', 'run-right', 'snooze', 'sleep', 'satisfied']
@@ -249,7 +253,6 @@ function initHuhu($) {
             });
 
             $('body').on('click', '#msg-submit', function() {
-                
                 var sendMsgCount = 0;
                 var resMsgCount = 0;
                 var sendMsg = $('#type-msg-input').val();
@@ -258,18 +261,23 @@ function initHuhu($) {
                 sendMsgCount += 1;
                 //var chatApiUrl = "https://jsonp.nodejitsu.com/?callback=?&url=http://www.tuling123.com/openapi/api?";
                 //key: 'fb17eceaf7166871a0c5a45ecdaf6895', info: '白羊座今天运势如何'
-                var chatApiUrl = "https://jsonp.nodejitsu.com/?callback=?&url=http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895";
-                //var chatApiUrl = "http://anyorigin.com/dev/get?url=http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi";
-                //alert(chatApiUrl);
+                var chatApiUrl = "https://jsonp.nodejitsu.com/?callback=?&url=http%%3A%%2F%%2Fwww.tuling123.com%%2Fopenapi%%2Fapi%%3Fkey%%3Dfb17eceaf7166871a0c5a45ecdaf6895%%26info%%3D" + sendMsg;
                 $.ajax({
                     url: chatApiUrl,
                     type: "GET",
-                    dataType: "JSON"
-                    //data: {info: 'what is your name'}
+                    dataType: "JSONP"
                 }).done(function(data) {
                     console.log("JSON Data: " + data.text );
                     console.log("JSON Data: " + data );
-                    var resMsgHtml = '<div id="msg-count-' + resMsgCount + '">狐狐：' + data.text + '</div>';
+                    
+                    // detect browser type before translation
+                    if(navigator.userAgent.indexOf("MSIE")<0){
+                        var transToS = toTrad(data.text); 
+                    } else {
+                        var transToS = Traditionalized(data.text);                         
+                    }
+
+                    var resMsgHtml = '<div id="msg-count-' + resMsgCount + '">' + transToS + '：狐狐</div>';
                     $('#msg-content').append(resMsgHtml);
                     resMsgCount += 1;
                 }).fail(function(jqxhr, textStatus, error){
@@ -293,29 +301,19 @@ function initHuhu($) {
             //     $('#dashboard').removeClass('slide-in'); 
             // });
 
+            // update the blood
             function updateBlood(blood, duration) {
                 myCircle.update(blood, duration);
             }
 
-            // if($('#dashboard').length == 0) {
-            //     $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
-            //     $('#dashboard').show();
-            //     console.log($('#dashboard').length);
-            // } else {
-            //     $('#dashboard').hide();
-            //     alert('x');
-            // }
-            // document.oncontextmenu = function() {return false;};
-            // $huhu.mousedown(function(e){ 
-            //     if( e.button == 2 ) { 
-            //         console.log('Right mouse button!'); 
-            //         return false; 
-            // } 
-            //     return true; 
-            // }); 
+            // detect the if blood < 5 
             setInterval((function() {
-                if(total_blood > 0) {
+                if(total_blood > 5) {
                     updateBlood(total_blood, 100);
+                    $('.circles-text').css('color', 'rgb(255, 255, 255)');
+                } else {
+                    updateBlood(total_blood, 100);
+                    $('.circles-text').css('color', 'rgb(255, 0, 89)');
                 }
                 updateBlood(total_blood, 100);
             }), 100);
@@ -324,7 +322,7 @@ function initHuhu($) {
                 if(total_blood > 0) {
                     total_blood -= 1;
                     updateBlood(total_blood, 100);
-                }
+                } 
                 updateBlood(total_blood, 100);
             }), 10000);
         }
@@ -338,9 +336,7 @@ function initHuhu($) {
                     // console.log(e);
                 } else {
                     console.log('sorry, your broser cannot support drag event');
-                }
-                //e.dataTransfer.setData("text/plain", "This is text to drag")
-                //console.log(e);               
+                }           
             });
             // Fire the drop event
             $huhu.on('dragover', function(e) {
@@ -398,10 +394,8 @@ function initHuhu($) {
                 $huhu.css('cursor', 'move');
             });
         }
-// $('body').append('<img src="./css/img/8-bit-fox-run.gif">')
         init();
         dragObject();
         dashBoard();
-
     })();
 }
