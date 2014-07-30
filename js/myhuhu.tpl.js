@@ -38,6 +38,7 @@ huhuJuiScript.onload = huhuScript.onreadystatechange = function() {
 document.body.appendChild(huhuScript);
 document.body.appendChild(huhuJuiScript);
 
+
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
@@ -202,29 +203,35 @@ function initHuhu($) {
         console.log($(document).scrollTop());
 
         function dashBoard() {
+            var sendMsgCount = 0;
+            var resMsgCount = 0;
             if($('#dashboard').length == 0) {
                 //<h2 id="dashboard-title">Huhu(狐狐)</h2>
+                //<div><button id="dashboard-img-btn">吃了什麼圖</button></div>
                 $('body').append('<div id="dashboard"><div class="huhu-blood-circle" id="huhu-blood-cicle"></div></div>');
-                $('#dashboard').append('<div><button id="dashboard-img-btn">吃了什麼圖</button></div><div><button id="dashboard-msg-huhu">問狐狐問題</button></div>');
+                $('#dashboard').append('<div><button id="dashboard-msg-btn">和狐狐聊天</button></div>');
                 $('#dashboard').append('<div id="msg-board"></div>');
                 $('#dashboard').append('<div id="dashboard-footer"><p>made with <span id="love">♥</span> in Mozilla Taiwan</p></div>');
                 $('#dashboard').addClass('dashboard');
                 //$('#dashboard-title').addClass('dashboard-title');
-                $('#dashboard-img-btn').addClass('dashboard-img-btn dashboard-btn');
-                $('#dashboard-msg-huhu').addClass('dashboard-msg-huhu dashboard-btn');
+                //$('#dashboard-img-btn').addClass('dashboard-img-btn dashboard-btn');
+                $('#dashboard-msg-btn').addClass('dashboard-msg-btn dashboard-btn');
                 $('#msg-board').addClass('msg-board');
                 $('#dashboard-footer').addClass('dashboard-footer');
                 $('#love').addClass('love');
 
-                $('#dashboard-img-btn').on('click', function(){
-                    $('#msg-board').html('<input type="text" placeholder="想對狐狐說啥？"/>')
-                });
+                // $('#dashboard-img-btn').on('click', function(){
+                //     $('#msg-board').html('<div id="msg-input-bar"><input type="text" placeholder="想對狐狐說啥？"/></div>')
+                //     $('#msg-input-bar').addClass('msg-input-bar');
+                // });
 
-                $('#dashboard-msg-huhu').on('click', function(){
-                    $('#msg-board').html('<div id="msg-content"></div><div id="msg-bar"><input id="type-msg-input" type="text" placeholder="想問狐狐啥？"/><button id="msg-submit">送出</button></div>')
+                $('#dashboard-msg-btn').on('click', function(){
+                    $('#msg-board').html('<div id="msg-input-bar"><div id="msg-content"></div><div id="msg-bar"><input id="type-msg-input" type="text" placeholder="想對狐狐說啥？"/><button id="msg-submit">送出</button></div></div>')
+                    $('#msg-content').addClass('msg-content');
+                    $('#msg-input-bar').addClass('msg-input-bar');
                 });
             } else {
-//http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi
+
             }
 
             // circle
@@ -239,43 +246,39 @@ function initHuhu($) {
                 duration:   400,
                 wrpClass:   'circles-wrp',
                 textClass:  'circles-text'
-            })
-
-            $('body').on('click', '#msg-submit', function() {
-                //makeCorsRequest();
-                //var jqxhr = $.ajax( "http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=" + $('#type-msg-input').val() )
-                // $.get( "http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi", function( data ) {
-                //     console.log(data);
-                //     alert( "Load was performed." );
-                // });
-function reqListener () {
-  console.log(this.responseText);
-}
-
-// var oReq = new XMLHttpRequest();
-// oReq.onload = reqListener;
-// oReq.open("get", "http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi&callback=myCallback?", true);
-// oReq.send();
-                var url = 'http://www.tuling123.com/openapi/api';
-                $.ajax({
-                    url: url,
-                    data: {
-                        key: 'fb17eceaf7166871a0c5a45ecdaf6895',
-                        info: 'hi'
-                    },
-                    type:"GET",
-                    dataType:'jsonp json',
-                    beforeSend: function(xhr) {
-                        xhr.overrideMimeType("application/json; charset=utf-8")
-                    }
-                }).done(function(msg){
-                    alert(msg);
-                }).fail(function(xhr, status){ 
-                    alert(status);
-                });
             });
 
-//合成圖
+            $('body').on('click', '#msg-submit', function() {
+                
+                var sendMsgCount = 0;
+                var resMsgCount = 0;
+                var sendMsg = $('#type-msg-input').val();
+                console.log(sendMsg);
+                $('#msg-content').append('<div id="msg-count-' + sendMsgCount + '">主人：' + sendMsg + '</div>');
+                sendMsgCount += 1;
+                //var chatApiUrl = "https://jsonp.nodejitsu.com/?callback=?&url=http://www.tuling123.com/openapi/api?";
+                //key: 'fb17eceaf7166871a0c5a45ecdaf6895', info: '白羊座今天运势如何'
+                var chatApiUrl = "https://jsonp.nodejitsu.com/?callback=?&url=http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895";
+                //var chatApiUrl = "http://anyorigin.com/dev/get?url=http://www.tuling123.com/openapi/api?key=fb17eceaf7166871a0c5a45ecdaf6895&info=hi";
+                //alert(chatApiUrl);
+                $.ajax({
+                    url: chatApiUrl,
+                    type: "GET",
+                    dataType: "JSON"
+                    //data: {info: 'what is your name'}
+                }).done(function(data) {
+                    console.log("JSON Data: " + data.text );
+                    console.log("JSON Data: " + data );
+                    var resMsgHtml = '<div id="msg-count-' + resMsgCount + '">狐狐：' + data.text + '</div>';
+                    $('#msg-content').append(resMsgHtml);
+                    resMsgCount += 1;
+                }).fail(function(jqxhr, textStatus, error){
+                    var err = textStatus + ', ' + error;
+                    console.log("Request Failed: " + err);
+                });
+
+            });
+
             $huhu.on("contextmenu", function(e){
                 console.log('XD');
                 //alert('contextmenu');                
@@ -293,7 +296,6 @@ function reqListener () {
             function updateBlood(blood, duration) {
                 myCircle.update(blood, duration);
             }
-
 
             // if($('#dashboard').length == 0) {
             //     $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');

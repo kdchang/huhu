@@ -48,17 +48,17 @@
 .huhu-life-tip{
   position:absolute;
   left:0;top:0;
-  background:rgba(255,159,22,0.75);
-  color:#000;
-  font-size:24px;
-  -webkit-border-radius:10px;
-  border-radius:10px;
+  -webkit-border-radius:14px;
+  border-radius:14px;
   display:block;
-  padding:8px 10px 6px 10px;
+  padding:6px 10px 6px 10px;
   opacity:1;
   font-size: 20px;
   -ms-filter:none;
   filter:none;
+  background:rgba(255, 229, 0, 0.75);
+  color:#000;
+  font-size:24px;
 }
 
 .huhu-life-tip.huhu-show{
@@ -159,11 +159,6 @@
   -o-transition-property: background-color, color, right;
   -o-transition-duration: 5s;*/
 }
-/*.dashboard-title {
-  color:  #F9F900;
-  text-align: center;
-  margin-top: 30px;
-}*/
 
 .dashboard-btn {
   display: block;
@@ -190,8 +185,39 @@
   background: rgb(255, 136, 0);
 }
 
-.dashboard-msg-huhu:hover {
+.dashboard-msg-btn:hover {
   background: rgb(255, 136, 0);
+}
+
+.dashboard-msg-btn:active {
+    -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
+}
+
+.msg-content {
+  width: 200px;
+  height: 200px;
+  color: rgb(145, 255, 0);
+  overflow-y: auto;
+  margin: 0 3px;
+  font-family: bold;
+}
+
+.msg-input-bar {
+  margin: 3px;
+}
+
+.msg-input-bar button {
+  padding: 1px;
+  background: rgb(0, 246, 255);
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border:1px solid rgbrgb(0, 246, 255);
+  border-bottom: 5px solid rgb(0, 246, 255);
 }
 
 .dashboard-footer {
