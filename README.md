@@ -9,4 +9,4 @@ open index.html in browser (Firefox, Chrome)
 1. update the js/myhuhu.tpl.js
 2. update the css/myhuhu.tpl.less
 
-	python tools/build_assets
+		python tools/build_assets
