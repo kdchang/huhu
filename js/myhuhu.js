@@ -43,7 +43,6 @@ huhuJuiScript.onload = huhuScript.onreadystatechange = function() {
 document.body.appendChild(huhuScript);
 document.body.appendChild(huhuJuiScript);
 
-
 String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
@@ -54,7 +53,7 @@ String.prototype.startsWith = function(suffix) {
 
 function initHuhu($) {
     (window.myhuhu = function() {
-        var total_blood = 6;
+        var total_blood = 70;
         var moves = {
             'still': {
                 next: ['still', 'run-left', 'run-right', 'snooze', 'sleep', 'satisfied']
@@ -231,9 +230,12 @@ function initHuhu($) {
                 // });
 
                 $('#dashboard-msg-btn').on('click', function(){
-                    $('#msg-board').html('<div id="msg-input-bar"><div id="msg-content"></div><div id="msg-bar"><input id="type-msg-input" type="text" placeholder="想對狐狐說啥？"/><button id="msg-submit">送出</button></div></div>')
+                    $('#dashboard-msg-btn').hide();
+                    $('#msg-board').html('<div id="msg-inline-board"><div id="msg-content"></div><div id="msg-bar"><input id="type-msg-input" type="text" placeholder="想對狐狐說啥？"/><button id="msg-submit">送出</button></div></div>')
                     $('#msg-content').addClass('msg-content');
-                    $('#msg-input-bar').addClass('msg-input-bar');
+                    $('#msg-inline-board').addClass('msg-inline-board');
+                    $('#type-msg-input').addClass('type-msg-input');
+                    $('#msg-bar ').addClass('msg-bar');
                 });
             } else {
 
@@ -254,11 +256,10 @@ function initHuhu($) {
             });
 
             $('body').on('click', '#msg-submit', function() {
-                var sendMsgCount = 0;
-                var resMsgCount = 0;
                 var sendMsg = $('#type-msg-input').val();
                 console.log(sendMsg);
-                $('#msg-content').append('<div id="msg-count-' + sendMsgCount + '">主人：' + sendMsg + '</div>');
+                $('#msg-content').append('<div id="msg-count-' + sendMsgCount + '">主人：<span id="msg-span-' + sendMsgCount + '">' + sendMsg + '</span></div>');
+                $('#msg-span-' + resMsgCount).addClass('msg-span-msg');
                 sendMsgCount += 1;
                 //var chatApiUrl = "https://jsonp.nodejitsu.com/?callback=?&url=http://www.tuling123.com/openapi/api?";
                 //key: 'fb17eceaf7166871a0c5a45ecdaf6895', info: '白羊座今天运势如何'
@@ -278,8 +279,10 @@ function initHuhu($) {
                         var transToS = Traditionalized(data.text);                         
                     }
 
-                    var resMsgHtml = '<div id="msg-count-' + resMsgCount + '">' + transToS + '：狐狐</div>';
+                    var resMsgHtml = '<div id="msg-count-' + resMsgCount + '">狐狐：<span id="res-span-' + resMsgCount + '">' + transToS + '</span></div>';
+
                     $('#msg-content').append(resMsgHtml);
+                    $('#res-span-' + resMsgCount).addClass('res-span-msg');
                     resMsgCount += 1;
                 }).fail(function(jqxhr, textStatus, error){
                     var err = textStatus + ', ' + error;
@@ -302,33 +305,28 @@ function initHuhu($) {
             //     $('#dashboard').removeClass('slide-in'); 
             // });
 
+            // update the blood
             function updateBlood(blood, duration) {
                 myCircle.update(blood, duration);
             }
 
-            // if($('#dashboard').length == 0) {
-            //     $('body').append('<div id="dashboard" style="display:none; width:100px; background:red;">Dash</div>');
-            //     $('#dashboard').show();
-            //     console.log($('#dashboard').length);
-            // } else {
-            //     $('#dashboard').hide();
-            //     alert('x');
-            // }
-            // document.oncontextmenu = function() {return false;};
-            // $huhu.mousedown(function(e){ 
-            //     if( e.button == 2 ) { 
-            //         console.log('Right mouse button!'); 
-            //         return false; 
-            // } 
-            //     return true; 
-            // }); 
+            // detect the if blood < 5 
             setInterval((function() {
                 if(total_blood > 5) {
                     updateBlood(total_blood, 100);
-                    $('.circles-text').css('color', 'white');
+                    $('.circles-text').css('color', 'rgb(255, 255, 255)');
+                    // if(typeof fxSleep != 'undefined'){
+                    //     clearInterval(fxSleep);
+                    // }
                 } else {
                     updateBlood(total_blood, 100);
-                    $('.circles-text').css('color', 'red');
+                    $('.circles-text').css('color', 'rgba(255, 0, 72, 0.8)');
+
+                    // function sleepAction() {
+                    //     $huhuSprite.removeClass();
+                    //     $huhuSprite.addClass('sleep');
+                    // }
+                    // fxSleep = setInterval(sleepAction, 10);
                 }
                 updateBlood(total_blood, 100);
             }), 100);
@@ -351,9 +349,7 @@ function initHuhu($) {
                     // console.log(e);
                 } else {
                     console.log('sorry, your broser cannot support drag event');
-                }
-                //e.dataTransfer.setData("text/plain", "This is text to drag")
-                //console.log(e);               
+                }           
             });
             // Fire the drop event
             $huhu.on('dragover', function(e) {
@@ -411,10 +407,8 @@ function initHuhu($) {
                 $huhu.css('cursor', 'move');
             });
         }
-// $('body').append('<img src="./css/img/8-bit-fox-run.gif">')
         init();
         dragObject();
         dashBoard();
-
     })();
 }
