@@ -1,10 +1,6 @@
-=Huhu
+#Huhu
 
-1. drag motion (v)
-2. dashboard(animation) drag action (v)
-3. form / chat / canvas heat / image render
-4. 亞柏
+-Huhu (狐狐) is a browser bookmarklet that make you can keep a Firefox pet in your browser.
 
-
-problem :
-1. child node will jump the dashboard
+##Usage
+open index.html

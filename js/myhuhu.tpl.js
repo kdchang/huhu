@@ -370,20 +370,10 @@ function initHuhu($) {
                 console.log(files)
                 //console.log(files)
                 //console.log(blood);
-                if (files.length > 0) {
-                    total_size = 0;
-                    //console.log('yo')
-                    for (i = 0, len = files.length; i < len; i++) {
-                        file = files[i];
-                        total_size += file.size;
-                        //console.log(total_size);
-                    }
-                    blood += parseInt(total_size / 10000);
-                    total_blood += parseInt(total_size / 10000);
-                } else {
-                    blood += 5;
-                    total_blood += 5;
-                }
+
+                blood += 5;
+                total_blood += 5;
+
                 //console.log('eat eat up', blood);
                 if (blood > 0) {
                     blood = parseInt(blood, 10);
